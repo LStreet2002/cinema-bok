@@ -1,0 +1,67 @@
+* {
+    font-family: 'Delius', cursive;
+}
+body {
+    background-color: #4392F1;
+    margin:0px;
+  }
+#wecco {
+    color:white;
+    font-size: 5vw;
+text-align:center;
+}
+#menuc {
+    margin-top:10vh;
+    display:grid;
+    width:100vw;
+    grid-template-columns:1fr 1fr 1fr ;
+    grid-template-rows:1fr;
+    height:31vh;
+    grid-template-areas:"lis vid tic" ;
+}
+#lis {
+    grid-area:lis;
+}
+#vid {
+    grid-area:vid;
+}
+#tic {
+    grid-area:tic;
+}
+.submen {
+    display:grid;
+    width:31.3vw;
+    grid-template-columns:1fr;
+    grid-template-rows:4fr 1fr;
+    grid-template-areas:
+    "ico"
+    "wor"
+}
+.ico {
+    grid-area:ico;
+    width:22vw;
+    height:35vh;
+    margin-left:5.5vw;
+    margin-right:5.5vw;
+}
+.wor {
+    grid-area:wor;
+    font-size:2.2vw;
+    text-align: center;
+    color:white;
+}
+#bar {
+text-align: center;
+color:white;
+background-color: #F18282;
+width:100vw;
+margin-left:0vw;
+position:absolute;
+top:93.8vh;
+padding-top:1.5vh;
+padding-bottom:1.5vh;
+margin-bottom:0vh;
+}
+.hovv:hover {
+    cursor: pointer;
+}

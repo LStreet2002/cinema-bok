@@ -1,0 +1,126 @@
+body {
+  background-color: #4392F1;
+}
+
+* {
+  font-family: 'Delius', cursive;
+}
+
+#admin-box {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
+  -ms-grid-rows: 4fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
+      grid-template-rows: 4fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
+      grid-template-areas: ". ogle ." ". . ." "emil emil emil" ". . ." "passo passo passo" ". . ." ". sub .";
+  width: 80%;
+  margin: auto;
+  height: 96vh;
+}
+
+#ogle {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: ogle;
+  height: 40vh;
+}
+
+#Emilp {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: emil;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr;
+      grid-template-columns: 1fr 4fr;
+  width: 100%;
+  height: 100%;
+  -ms-grid-rows: 0.3fr 1fr 0.3fr;
+      grid-template-rows: 0.3fr 1fr 0.3fr;
+      grid-template-areas: ". emi" "use emi" ". emi";
+  background-color: #0A0903;
+}
+
+#Emil {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 2;
+  grid-area: emi;
+  height: 100%;
+  padding: 0px;
+  border: 0px;
+  padding-left: 2%;
+  font-size: 130%;
+}
+
+#use {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: use;
+  height: 100%;
+  padding: 0px;
+  margin: auto;
+}
+
+#passop {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: passo;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr;
+      grid-template-columns: 1fr 4fr;
+  width: 100%;
+  height: 100%;
+  -ms-grid-rows: 0.3fr 1fr 0.3fr;
+      grid-template-rows: 0.3fr 1fr 0.3fr;
+      grid-template-areas: ". pas" "lock pas" ". pas";
+  background-color: #0A0903;
+}
+
+#passowrd {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 2;
+  grid-area: pas;
+  height: 100%;
+  padding: 0px;
+  border: 0px;
+  padding-left: 2%;
+  font-size: 130%;
+}
+
+#pad {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: lock;
+  height: 100%;
+  padding: 0px;
+  margin: auto;
+}
+
+#conform {
+  -ms-grid-row: 7;
+  -ms-grid-column: 2;
+  grid-area: sub;
+  background-color: #0A0903;
+  border: none;
+  outline: none;
+}
+
+#conform:hover {
+  cursor: pointer;
+}
+
+#arro {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#arro:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=login.css.map */

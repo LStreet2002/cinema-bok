@@ -1,0 +1,98 @@
+body{
+    background-color: #4392F1;
+}
+* {
+    font-family: 'Delius', cursive;
+}
+#admin-box {
+    display:grid;
+    grid-template-columns:1fr 2fr 1fr;
+    grid-template-rows:4fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
+    grid-template-areas: 
+    ". ogle ."
+    ". . ."
+    "emil emil emil"
+    ". . ."
+    "passo passo passo"
+    ". . ."
+    ". sub .";
+    width:80%;
+    margin:auto;
+    height:96vh;
+}
+#ogle {
+    grid-area:ogle;
+    height:40vh;
+}
+#Emilp {
+    grid-area:emil;
+    display:grid;
+    grid-template-columns:1fr 4fr;
+    width:100%;
+    height:100%;
+    grid-template-rows:0.3fr 1fr 0.3fr;
+    grid-template-areas:
+    ". emi"
+    "use emi"
+    ". emi";
+    background-color: #0A0903;
+
+}
+#Emil {
+    grid-area:emi;
+    height:100%;
+    padding: 0px;
+    border:0px;
+    padding-left:2%;
+    font-size:130%;
+}
+#use {
+    grid-area:use;
+    height:100%;
+ padding:0px;
+    margin:auto;
+    
+}
+#passop {
+    grid-area:passo;
+    display:grid;
+    grid-template-columns:1fr 4fr;
+    width:100%;
+    height:100%;
+    grid-template-rows:0.3fr 1fr 0.3fr;
+    grid-template-areas:
+    ". pas"
+    "lock pas"
+    ". pas";
+    background-color: #0A0903;
+}
+#passowrd {
+    grid-area:pas;
+    height:100%;
+    padding: 0px;
+    border:0px;
+    padding-left:2%;
+    font-size:130%;
+}
+#pad {
+    grid-area:lock;
+    height:100%;
+ padding:0px;
+    margin:auto;
+    
+}
+#conform {
+    grid-area:sub;
+    background-color: #0A0903;
+    border:none;   
+    outline: none;
+}
+#conform:hover {
+    cursor: pointer;
+}
+#arro {
+    transform:rotate(180deg);
+}
+#arro:hover {
+    cursor: pointer;
+}
