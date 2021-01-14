@@ -7,6 +7,76 @@ body {
   margin: 0px;
 }
 
+#form {
+  width: 80vw;
+  height: 90vh;
+  margin-left: 10vw;
+  margin-top: 2.8vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 7fr 3fr;
+      grid-template-columns: 3fr 7fr 3fr;
+  -ms-grid-rows: 5fr 1fr 2fr 1fr 2fr 1fr 4fr 1fr 4fr 1fr 2fr 0.2fr 2fr;
+      grid-template-rows: 5fr 1fr 2fr 1fr 2fr 1fr 4fr 1fr 4fr 1fr 2fr 0.2fr 2fr;
+      grid-template-areas: ". vid ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "add add add";
+}
+
+#trai {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: vid;
+}
+
+#title {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: tbox;
+}
+
+#length {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: lbox;
+}
+
+#descrip {
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: dbox;
+}
+
+#addit {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: abox;
+}
+
+#ages {
+  -ms-grid-row: 11;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: age;
+}
+
+#add {
+  -ms-grid-row: 13;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: add;
+  text-align: center;
+  background-color: #0A0903;
+  color: white;
+  font-size: 1.9vw;
+  margin-left: 31vw;
+  width: 18vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
 .serie {
   display: -ms-grid;
   display: grid;
@@ -15,6 +85,7 @@ body {
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
       grid-template-areas: "labe bawx";
+  margin-bottom: 1vh;
 }
 
 .labe {
@@ -34,16 +105,15 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin: 0px;
-  margin-bottom: 1vh;
+  text-align: center;
 }
 
 .bawx {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: bawx;
-  height: 7.9h;
+  height: 7.9vh;
   padding: 0px;
-  margin-bottom: 1vh;
 }
 
 #ages {
@@ -89,5 +159,26 @@ body {
   -ms-grid-column: 5;
   grid-area: eighteen;
   text-align: center;
+}
+
+.bigb {
+  font-size: 3.5vw;
+}
+
+#bar {
+  text-align: center;
+  color: white;
+  background-color: #F18282;
+  width: 100vw;
+  margin-left: 0vw;
+  position: absolute;
+  top: 93.9vh;
+  padding-top: 1.5vh;
+  padding-bottom: 1.5vh;
+  margin-bottom: 0vh;
+}
+
+.hovv:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=vid.css.map */
