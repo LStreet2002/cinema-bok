@@ -1,0 +1,56 @@
+* {
+    font-family: 'Delius', cursive;
+}
+body {
+    background-color: #4392F1;
+    margin:0px;
+}
+.serie {
+    display:grid;
+    grid-template-columns:1fr 5fr;
+    grid-template-rows:1fr;
+    grid-template-areas:"labe bawx"
+}
+.labe {
+    grid-area:labe;
+    background-color:#0A0903;
+    color:white;
+    height:8vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:0px;
+    margin-bottom:1vh;
+}
+.bawx {
+    grid-area:bawx;
+    height:7.9h;
+    padding:0px;
+    margin-bottom:1vh;
+}
+#ages {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "U PG twelve fifteen eighteen";
+}
+#U {
+    grid-area:U;
+    text-align: center;
+}
+#PG {
+    grid-area:PG;
+    text-align: center;
+}
+#twelve {
+    grid-area:twelve;
+    text-align: center;
+}
+#fifteen {
+    grid-area:fifteen;
+    text-align: center;
+}
+#eighteen {
+    grid-area:eighteen;
+    text-align: center;
+}

@@ -1,0 +1,93 @@
+* {
+  font-family: 'Delius', cursive;
+}
+
+body {
+  background-color: #4392F1;
+  margin: 0px;
+}
+
+.serie {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "labe bawx";
+}
+
+.labe {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: labe;
+  background-color: #0A0903;
+  color: white;
+  height: 8vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px;
+  margin-bottom: 1vh;
+}
+
+.bawx {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: bawx;
+  height: 7.9h;
+  padding: 0px;
+  margin-bottom: 1vh;
+}
+
+#ages {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "U PG twelve fifteen eighteen";
+}
+
+#U {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: U;
+  text-align: center;
+}
+
+#PG {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: PG;
+  text-align: center;
+}
+
+#twelve {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: twelve;
+  text-align: center;
+}
+
+#fifteen {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: fifteen;
+  text-align: center;
+}
+
+#eighteen {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: eighteen;
+  text-align: center;
+}
+/*# sourceMappingURL=vid.css.map */
