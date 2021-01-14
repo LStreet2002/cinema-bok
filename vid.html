@@ -12,6 +12,8 @@
 
 <body>
     <div id="form">
+        <div id="sele" class="hovv" onclick=chose()>Select file</div>
+        <input type="file" style="display:none" id="pseu">
         <video id="trai" controls>
         </video>
         <div class="serie" id="title">
@@ -33,7 +35,7 @@
             <p id="fifteen" class="hovv agi" onclick=sage(this)>15</p>
             <p id="eighteen" class="hovv agi" onclick=sage(this)>18</p>
         </div>
-        <p class="hovv" id="add">ADD</p>
+        <p class="hovv" id="add" onclick=plu()>ADD</p>
     </div>
     <div id="bar" class="hovv" onclick=back()>RETURN</div>
 

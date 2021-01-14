@@ -10,16 +10,16 @@ body {
 
 #form {
   width: 80vw;
-  height: 90vh;
+  height: 95vh;
   margin-left: 10vw;
   margin-top: 2.8vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3fr 7fr 3fr;
       grid-template-columns: 3fr 7fr 3fr;
-  -ms-grid-rows: 5fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
-      grid-template-rows: 5fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
-      grid-template-areas: ". vid ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "add add add";
+  -ms-grid-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+      grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+      grid-template-areas: ". vid ." ". . ." ". sele ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "add add add";
 }
 
 #trai {
@@ -31,43 +31,57 @@ body {
   margin-left: 7.8vw;
 }
 
-#title {
+#sele {
   -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: sele;
+  background-color: #0A0903;
+  color: white;
+  width: 25vw;
+  margin-left: 7.8vw;
+  text-align: center;
+  font-size: 1.5vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#title {
+  -ms-grid-row: 5;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: tbox;
 }
 
 #length {
-  -ms-grid-row: 5;
+  -ms-grid-row: 7;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: lbox;
 }
 
 #descrip {
-  -ms-grid-row: 7;
+  -ms-grid-row: 9;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: dbox;
 }
 
 #addit {
-  -ms-grid-row: 9;
+  -ms-grid-row: 11;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: abox;
 }
 
 #ages {
-  -ms-grid-row: 11;
+  -ms-grid-row: 13;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: age;
 }
 
 #add {
-  -ms-grid-row: 13;
+  -ms-grid-row: 15;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: add;
@@ -98,7 +112,7 @@ body {
   grid-area: labe;
   background-color: #0A0903;
   color: white;
-  height: 8vh;
+  height: 7vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -116,7 +130,7 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: bawx;
-  height: 7.9vh;
+  height: 6.9vh;
   padding: 0px;
   resize: none;
 }

@@ -8,14 +8,16 @@ body {
 }
 #form {
     width:80vw;
-    height:90vh;
+    height:95vh;
     margin-left:10vw;
     margin-top:2.8vh;
     display:grid;
     grid-template-columns:3fr 7fr 3fr;
-    grid-template-rows: 5fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+    grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
     grid-template-areas:
     ". vid ."
+    ". . ."
+    ". sele ."
     ". . ."
     "tbox tbox tbox"
     ". . ."
@@ -34,6 +36,17 @@ body {
     width:25vw;
   height:15vw;
     margin-left:7.8vw;
+}
+#sele {
+    grid-area:sele;
+    background-color: #0A0903;
+    color:white;
+    width:25vw;
+    margin-left:7.8vw;
+    text-align:center;
+    font-size:1.5vw;
+    padding-top:1vh;
+    padding-bottom:1vh;
 }
 #title {
     grid-area:tbox;
@@ -73,7 +86,7 @@ padding-bottom:1vh;
     grid-area:labe;
     background-color:#0A0903;
     color:white;
-    height:8vh;
+    height:7vh;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +96,7 @@ padding-bottom:1vh;
 }
 .bawx {
     grid-area:bawx;
-    height:7.9vh;
+    height:6.9vh;
     padding:0px;
     resize:none;
 }
