@@ -5,6 +5,7 @@
 body {
   background-color: #4392F1;
   margin: 0px;
+  overflow: hidden;
 }
 
 #wecco {
@@ -81,7 +82,7 @@ body {
   width: 100vw;
   margin-left: 0vw;
   position: absolute;
-  top: 93.9vh;
+  top: 95vh;
   padding-top: 1.5vh;
   padding-bottom: 1.5vh;
   margin-bottom: 0vh;

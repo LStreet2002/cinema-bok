@@ -5,6 +5,7 @@
 body {
   background-color: #4392F1;
   margin: 0px;
+  overflow: hidden;
 }
 
 #form {
@@ -16,8 +17,8 @@ body {
   display: grid;
   -ms-grid-columns: 3fr 7fr 3fr;
       grid-template-columns: 3fr 7fr 3fr;
-  -ms-grid-rows: 5fr 1fr 2fr 1fr 2fr 1fr 4fr 1fr 4fr 1fr 2fr 0.2fr 2fr;
-      grid-template-rows: 5fr 1fr 2fr 1fr 2fr 1fr 4fr 1fr 4fr 1fr 2fr 0.2fr 2fr;
+  -ms-grid-rows: 5fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+      grid-template-rows: 5fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
       grid-template-areas: ". vid ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "add add add";
 }
 
@@ -25,6 +26,9 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: vid;
+  width: 25vw;
+  height: 15vw;
+  margin-left: 7.8vw;
 }
 
 #title {
@@ -114,6 +118,7 @@ body {
   grid-area: bawx;
   height: 7.9vh;
   padding: 0px;
+  resize: none;
 }
 
 #ages {
@@ -162,7 +167,7 @@ body {
 }
 
 .bigb {
-  font-size: 3.5vw;
+  font-size: 3vh;
 }
 
 #bar {
@@ -172,7 +177,7 @@ body {
   width: 100vw;
   margin-left: 0vw;
   position: absolute;
-  top: 93.9vh;
+  top: 95vh;
   padding-top: 1.5vh;
   padding-bottom: 1.5vh;
   margin-bottom: 0vh;
@@ -180,5 +185,19 @@ body {
 
 .hovv:hover {
   cursor: pointer;
+}
+
+.agi {
+  margin: 0px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=vid.css.map */

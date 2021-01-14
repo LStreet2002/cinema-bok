@@ -27,15 +27,24 @@
             <p class="labe">Additional information</p><textarea class="bawx" required></textarea>
         </div>
         <div id="ages">
-            <p id="U">U</p>
-            <p id="PG">PG</p>
-            <p id="twelve">12</p>
-            <p id="fifteen">15</p>
-            <p id="eighteen">18</p>
+            <p id="U" class="hovv agi" onclick=sage(this)>U</p>
+            <p id="PG" class="hovv agi" onclick=sage(this)>PG</p>
+            <p id="twelve" class="hovv agi" onclick=sage(this)>12</p>
+            <p id="fifteen" class="hovv agi" onclick=sage(this)>15</p>
+            <p id="eighteen" class="hovv agi" onclick=sage(this)>18</p>
         </div>
         <p class="hovv" id="add">ADD</p>
     </div>
     <div id="bar" class="hovv" onclick=back()>RETURN</div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/vid.js"></script>
 
 </body>
 
