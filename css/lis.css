@@ -9,22 +9,38 @@ body {
 }
 
 .pocket {
+  padding: 2vh;
+  margin-top: 3vh;
   width: 90vw;
   margin-left: 5vw;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2fr 4fr 0.5fr;
-      grid-template-columns: 2fr 4fr 0.5fr;
-  -ms-grid-rows: 1fr 1fr 2fr;
-      grid-template-rows: 1fr 1fr 2fr;
-      grid-template-areas: "prev litle agg" "prev time agg" ". dess dess";
+  -ms-grid-columns: 1fr 5fr 1fr;
+      grid-template-columns: 1fr 5fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas: "prev litle agg" "prev time agg" "prev dess dess";
+  height: 21vh;
+}
+
+.pocket p {
+  margin-top: 0px;
+  margin-left: 3vw;
+  font-size: 1.4vw;
+  color: white;
+}
+
+.pocket:hover {
+  cursor: pointer;
+  background-color: #2e83eb;
 }
 
 .prev {
   -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
+  -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   grid-area: prev;
+  height: 21vh;
 }
 
 .litle {
@@ -44,7 +60,7 @@ body {
   -ms-grid-row-span: 2;
   -ms-grid-column: 3;
   grid-area: agg;
-  height: 10vw;
+  height: 14vh;
 }
 
 .dess {
@@ -56,6 +72,10 @@ body {
 
 .dadit {
   grid-area: dadit;
+}
+
+.adie {
+  display: none;
 }
 
 #bar {
@@ -73,5 +93,221 @@ body {
 
 .hovv:hover {
   cursor: pointer;
+}
+
+#form {
+  width: 80vw;
+  height: 95vh;
+  margin-left: 10vw;
+  margin-top: 2.8vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 7fr 3fr;
+      grid-template-columns: 3fr 7fr 3fr;
+  -ms-grid-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+      grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+      grid-template-areas: ". vid ." ". . ." ". sele ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "delete . update";
+}
+
+#trai {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: vid;
+  width: 25vw;
+  height: 15vw;
+  margin-left: 7.8vw;
+}
+
+#sele {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: sele;
+  background-color: #0A0903;
+  color: white;
+  width: 25vw;
+  margin-left: 7.8vw;
+  text-align: center;
+  font-size: 1.5vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#title {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: tbox;
+}
+
+#length {
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: lbox;
+}
+
+#descrip {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: dbox;
+}
+
+#addit {
+  -ms-grid-row: 11;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: abox;
+}
+
+#ages {
+  -ms-grid-row: 13;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: age;
+}
+
+#delete {
+  -ms-grid-row: 15;
+  -ms-grid-column: 1;
+  grid-area: delete;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-size: 1.9vw;
+  width: 18vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#update {
+  -ms-grid-row: 15;
+  -ms-grid-column: 3;
+  grid-area: update;
+  text-align: center;
+  background-color: #0A0903;
+  color: white;
+  font-size: 1.9vw;
+  width: 18vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.serie {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "labe bawx";
+  margin-bottom: 1vh;
+}
+
+.labe {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: labe;
+  background-color: #0A0903;
+  color: white;
+  height: 7vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px;
+  text-align: center;
+}
+
+.bawx {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: bawx;
+  height: 6.9vh;
+  padding: 0px;
+  resize: none;
+}
+
+#ages {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "U PG twelve fifteen eighteen";
+}
+
+#U {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: U;
+  text-align: center;
+}
+
+#PG {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: PG;
+  text-align: center;
+}
+
+#twelve {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: twelve;
+  text-align: center;
+}
+
+#fifteen {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: fifteen;
+  text-align: center;
+}
+
+#eighteen {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: eighteen;
+  text-align: center;
+}
+
+.bigb {
+  font-size: 3vh;
+}
+
+.agi {
+  margin: 0px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pbawx {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: bawx;
+  height: 6.9vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  margin: 0px;
 }
 /*# sourceMappingURL=lis.css.map */

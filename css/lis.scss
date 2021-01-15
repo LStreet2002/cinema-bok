@@ -7,18 +7,32 @@ body{
     font-family: 'Delius', cursive;
 }
 .pocket {
+    padding:2vh;
+    margin-top:3vh;
     width:90vw;
     margin-left:5vw;
     display:grid;
-grid-template-columns: 2fr 4fr 0.5fr;
-grid-template-rows: 1fr 1fr 2fr;
+grid-template-columns: 1fr 5fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
 grid-template-areas: 
 "prev litle agg"
 "prev time agg"
-". dess dess";
+"prev dess dess";
+height:21vh;
+p{
+    margin-top:0px;
+    margin-left:3vw;
+    font-size:1.4vw;
+    color:white;
+}
+}
+.pocket:hover {
+    cursor: pointer;
+    background-color: #2e83eb;
 }
 .prev {
 grid-area:prev;
+height:21vh;
 }
 .litle {
     grid-area:litle;
@@ -28,13 +42,16 @@ grid-area:prev;
 }
 .agg {
     grid-area:agg;
-    height:10vw;
+    height:14vh;
 }
 .dess {
     grid-area:dess;
 }
 .dadit {
     grid-area:dadit;
+}
+.adie {
+    display: none;
 }
 #bar {
     text-align: center;
@@ -51,3 +68,149 @@ grid-area:prev;
     .hovv:hover {
         cursor: pointer;
     }
+    #form {
+        width:80vw;
+        height:95vh;
+        margin-left:10vw;
+        margin-top:2.8vh;
+        display:grid;
+        grid-template-columns:3fr 7fr 3fr;
+        grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
+        grid-template-areas:
+        ". vid ."
+        ". . ."
+        ". sele ."
+        ". . ."
+        "tbox tbox tbox"
+        ". . ."
+        "lbox lbox lbox"
+        ". . ."
+        "dbox dbox dbox"
+        ". . ."
+        "abox abox abox"
+        ". . ."
+        "age age age"
+        ". . ."
+        "delete . update";
+    }
+    #trai {
+        grid-area:vid;
+        width:25vw;
+      height:15vw;
+        margin-left:7.8vw;
+    }
+    #sele {
+        grid-area:sele;
+        background-color: #0A0903;
+        color:white;
+        width:25vw;
+        margin-left:7.8vw;
+        text-align:center;
+        font-size:1.5vw;
+        padding-top:1vh;
+        padding-bottom:1vh;
+    }
+    #title {
+        grid-area:tbox;
+    }
+    #length {
+        grid-area:lbox;
+    }
+    #descrip {
+        grid-area:dbox;
+    }
+    #addit {
+        grid-area:abox;
+    }
+    #ages {
+        grid-area:age;
+    }
+    #delete {
+        grid-area: delete;
+        text-align:center;
+        background-color: red;
+        color:white;
+    font-size:1.9vw;
+    width:18vw;
+    padding-top:1vh;
+    padding-bottom:1vh;
+    }
+    #update {
+        grid-area: update;
+        text-align:center;
+        background-color: #0A0903;
+        color:white;
+    font-size:1.9vw;
+    width:18vw;
+    padding-top:1vh;
+    padding-bottom:1vh;
+    }
+    .serie {
+        display:grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-rows:1fr;
+        grid-template-areas:"labe bawx";
+        margin-bottom:1vh;
+    }
+    .labe {
+        grid-area:labe;
+        background-color:#0A0903;
+        color:white;
+        height:7vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        margin:0px;
+        text-align: center;
+    
+    }
+    .bawx {
+        grid-area:bawx;
+        height:6.9vh;
+        padding:0px;
+        resize:none;
+    }
+    #ages {
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "U PG twelve fifteen eighteen";
+    }
+    #U {
+        grid-area:U;
+        text-align: center;
+    }
+    #PG {
+        grid-area:PG;
+        text-align: center;
+    }
+    #twelve {
+        grid-area:twelve;
+        text-align: center;
+    }
+    #fifteen {
+        grid-area:fifteen;
+        text-align: center;
+    }
+    #eighteen {
+        grid-area:eighteen;
+        text-align: center;
+    }
+    .bigb {
+    font-size:3vh;
+    }
+    .agi {
+        margin:0px;
+        height:100%;
+        display:flex;
+        justify-content:center;
+        align-items: center;
+    }  
+    .pbawx {
+        grid-area:bawx;
+        height:6.9vh;
+        display: flex;
+        align-items: center;
+    background-color: white;
+    margin:0px;
+    }      
