@@ -1,0 +1,58 @@
+body {
+  background-color: #4392F1;
+}
+
+* {
+  font-family: 'Delius', cursive;
+}
+
+.pocket {
+  width: 90vw;
+  margin-left: 5vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 4fr 0.5fr;
+      grid-template-columns: 2fr 4fr 0.5fr;
+  -ms-grid-rows: 1fr 1fr 2fr;
+      grid-template-rows: 1fr 1fr 2fr;
+      grid-template-areas: "prev litle agg" "prev time agg" ". dess dess";
+}
+
+.prev {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: prev;
+}
+
+.litle {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: litle;
+}
+
+.time {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: time;
+}
+
+.agg {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 3;
+  grid-area: agg;
+  height: 10vw;
+}
+
+.dess {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: dess;
+}
+
+.dadit {
+  grid-area: dadit;
+}
+/*# sourceMappingURL=lis.css.map */

@@ -1,0 +1,36 @@
+body{
+    background-color: #4392F1;
+}
+* {
+    font-family: 'Delius', cursive;
+}
+.pocket {
+    width:90vw;
+    margin-left:5vw;
+    display:grid;
+grid-template-columns: 2fr 4fr 0.5fr;
+grid-template-rows: 1fr 1fr 2fr;
+grid-template-areas: 
+"prev litle agg"
+"prev time agg"
+". dess dess";
+}
+.prev {
+grid-area:prev;
+}
+.litle {
+    grid-area:litle;
+}
+.time {
+    grid-area:time;
+}
+.agg {
+    grid-area:agg;
+    height:10vw;
+}
+.dess {
+    grid-area:dess;
+}
+.dadit {
+    grid-area:dadit;
+}
