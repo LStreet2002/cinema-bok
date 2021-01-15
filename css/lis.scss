@@ -1,5 +1,7 @@
 body{
     background-color: #4392F1;
+    overflow: hidden;
+    margin:0px;
 }
 * {
     font-family: 'Delius', cursive;
@@ -34,3 +36,18 @@ grid-area:prev;
 .dadit {
     grid-area:dadit;
 }
+#bar {
+    text-align: center;
+    color:white;
+    background-color: #F18282;
+    width:100vw;
+    margin-left:0vw;
+    position:absolute;
+    top:95vh;
+    padding-top:1.5vh;
+    padding-bottom:1.5vh;
+    margin-bottom:0vh;
+    }
+    .hovv:hover {
+        cursor: pointer;
+    }

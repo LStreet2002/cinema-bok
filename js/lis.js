@@ -1,4 +1,8 @@
 
+
+function back() {
+    window.location.replace("menu.html")
+}
 firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
         await db
