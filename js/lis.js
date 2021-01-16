@@ -119,3 +119,16 @@ chooser.addEventListener("change", function (e) {
 function chose() {
     chooser.click()
 }
+async function delet() {
+    await storageRef
+        .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function () {
+            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText).delete().then(function () {
+                var toph = document.querySelectorAll(".litle")
+                for (i = 0; i < toph.length; i++) {
+                    if (toph[i].innerText === document.querySelector("#title").querySelector(".pbawx").innerText)
+                        toph[i].parentNode.style.display = "none"
+                }
+                back();
+            })
+        })
+}

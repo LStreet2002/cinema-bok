@@ -39,7 +39,7 @@ function chose() {
 }
 async function plu() {
 
-    db.collection("movies").doc(document.querySelector("#title").querySelector(".bawx").value)
+    await db.collection("movies").doc(document.querySelector("#title").querySelector(".bawx").value)
         .set({
             title: document.querySelector("#title").querySelector(".bawx").value,
             length: document.querySelector("#length").querySelector(".bawx").value,
@@ -47,10 +47,10 @@ async function plu() {
             additional: document.querySelector("#addit").querySelector(".bawx").value,
             age: document.getElementsByName("active")[0].innerText,
             trailer: file.name
-        }).then(function (docRef) {
+        }).then(async function (docRef) {
             var storageRef = firebase.storage().ref("trailers/" + file.name);
             // Upload file
-            var task = storageRef.put(file);;
+            var task = await storageRef.put(file);;
 
         }).then(function () {
             location.reload()
