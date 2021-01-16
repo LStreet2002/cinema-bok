@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
                             var time = document.createElement("p")
                             time.classList.add("time")
-                            time.innerText = doc.data().length + " minutes"
+                            time.innerText = doc.data().length
 
                             var dess = document.createElement("p")
                             dess.classList.add("dess")
@@ -75,6 +75,7 @@ function edit(e) {
     document.querySelector("#helder").style.display = "none"
     document.querySelector("#trai").src = e.querySelector(".prev").src
     document.querySelector("#trai").setAttribute("name", e.querySelector(".prev").getAttribute("name"))
+    document.querySelector("#trai").setAttribute("value", e.querySelector(".prev").getAttribute("name"))
     document.querySelector("#title").querySelector(".pbawx").innerText = e.querySelector(".litle").innerText
     document.querySelector("#length").querySelector(".bawx").value = e.querySelector(".time").innerText
     document.querySelector("#descrip").querySelector(".bawx").value = e.querySelector(".dess").innerText
@@ -110,6 +111,7 @@ chooser.addEventListener("change", function (e) {
     file = e.target.files[0];
 
     output = document.getElementById("trai");
+    output.setAttribute("value", file.name)
     var tempurl = URL.createObjectURL(event.target.files[0]);
     output.src = tempurl
     tempimage = tempurl
@@ -131,4 +133,39 @@ async function delet() {
                 back();
             })
         })
+}
+async function updat() {
+    if (document.querySelector("#trai").getAttribute("name") === document.querySelector("#trai").getAttribute("value")) {
+        console.log("pair")
+        await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+            .update({
+                length: document.querySelector("#length").querySelector(".bawx").value,
+                description: document.querySelector("#descrip").querySelector(".bawx").value,
+                additional: document.querySelector("#addit").querySelector(".bawx").value,
+                age: document.getElementsByName("active")[0].innerText,
+            }).then(function () {
+                location.reload()
+            })
+    }
+    else {
+        console.log("change")
+        await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+            .update({
+                length: document.querySelector("#length").querySelector(".bawx").value,
+                description: document.querySelector("#descrip").querySelector(".bawx").value,
+                additional: document.querySelector("#addit").querySelector(".bawx").value,
+                age: document.getElementsByName("active")[0].innerText,
+                trailer: document.querySelector("#trai").getAttribute("value")
+            }).then(async function () {
+                await storageRef
+                    .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function (docRef) {
+                        var storageRef = firebase.storage().ref("trailers/" + file.name);
+                        // Upload file
+                        var task = await storageRef.put(file);;
+
+                    }).then(function () {
+                        location.reload()
+                    })
+            })
+    }
 }
