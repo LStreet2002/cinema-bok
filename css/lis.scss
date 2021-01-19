@@ -6,6 +6,26 @@ body{
 * {
     font-family: 'Delius', cursive;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(51, 51, 51,0.5);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(51,51,51);
+  }
+  
 .pocket {
     padding:2vh;
     margin-top:3vh;
@@ -24,6 +44,15 @@ p{
     margin-left:3vw;
     font-size:1.4vw;
     color:white;
+}
+#genre {
+    grid-area:genre;
+       display:grid;
+    grid-template-columns:1fr 5fr;
+    grid-template-rows:1fr;
+    grid-template-areas:"labe bawx";
+    margin-bottom:1vh;
+    margin-left:-18vw;
 }
 }
 .pocket:hover {
@@ -54,7 +83,8 @@ height:21vh;
     display: none;
 }
 #helder {
-    overflow:scroll;
+    overflow-y:scroll;
+    height:95vh;
 }
 #bar {
     text-align: center;
@@ -86,7 +116,7 @@ height:21vh;
         ". . ."
         "tbox tbox tbox"
         ". . ."
-        "lbox lbox lbox"
+        "lbox lbox genre"
         ". . ."
         "dbox dbox dbox"
         ". . ."
@@ -95,6 +125,18 @@ height:21vh;
         "age age age"
         ". . ."
         "delete . update";
+    }
+    .lbaw {
+        width:30vw;
+    }
+    #genre {
+        grid-area:genre;
+           display:grid;
+        grid-template-columns:1fr 5fr;
+        grid-template-rows:1fr;
+        grid-template-areas:"labe bawx";
+        margin-bottom:1vh;
+        margin-left:-18vw;
     }
     #trai {
         grid-area:vid;
@@ -217,3 +259,14 @@ height:21vh;
     background-color: white;
     margin:0px;
     }      
+#seletor {
+    height:5vh;
+    width:100vw;
+    margin:0px;
+    background-color: #011638;
+    color: white;
+    border: 0px;
+    .filt{
+    
+    }
+}

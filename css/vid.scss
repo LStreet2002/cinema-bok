@@ -21,7 +21,7 @@ body {
     ". . ."
     "tbox tbox tbox"
     ". . ."
-    "lbox lbox lbox"
+    "lbox lbox genre"
     ". . ."
     "dbox dbox dbox"
     ". . ."
@@ -31,11 +31,23 @@ body {
     ". . ."
     "add add add";
 }
+.lbaw {
+    width:30vw;
+}
 #trai {
     grid-area:vid;
     width:25vw;
   height:15vw;
     margin-left:7.8vw;
+}
+#genre {
+    grid-area:genre;
+       display:grid;
+    grid-template-columns:1fr 5fr;
+    grid-template-rows:1fr;
+    grid-template-areas:"labe bawx";
+    margin-bottom:1vh;
+    margin-left:-18vw;
 }
 #sele {
     grid-area:sele;

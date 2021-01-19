@@ -11,6 +11,18 @@
 </head>
 
 <body>
+    <select onchange=file(this) id="seletor">
+        <option class="filt" value="All">All</option>
+        <option class="filt" value="Comedy">Comedy</option>
+        <option class="filt" value="Romance">Romance</option>
+        <option class="filt" value="Horror">Horror</option>
+        <option class="filt" value="Mystery">Mystery</option>
+        <option class="filt" value="Action">Action</option>
+        <option class="filt" value="Sci-fi">Sci-fi</option>
+        <option class="filt" value="Musical">Musical</option>
+        <option class="filt" value="Children's movie">Children's movie</option>
+        <option class="filt" value="Documentary">Documentary</option>
+    </select>
     <div id="helder"></div>
     <div id="form" style="display:none">
         <div id="sele" class="hovv" onclick=chose()>Select file</div>
@@ -22,7 +34,21 @@
             <p class="pbawx bigb"></p>
         </div>
         <div class="serie" id="length">
-            <p class="labe">Length</p><textarea placeholder="time in minutes" class="bawx bigb" required></textarea>
+            <p class="labe">Length</p><textarea placeholder="time in minutes" class="lbaw bawx bigb"
+                required></textarea>
+        </div>
+        <div id="genre">
+            <p class="labe">Genre</p><select id="gen" class="bawx">
+                <option class="ggf" value="Comedy">Comedy</option>
+                <option class="ggf" value="Romance">Romance</option>
+                <option class="ggf" value="Horror">Horror</option>
+                <option class="ggf" value="Mystery">Mystery</option>
+                <option class="ggf" value="Action">Action</option>
+                <option class="ggf" value="Sci-fi">Sci-fi</option>
+                <option class="ggf" value="Musical">Musical</option>
+                <option class="ggf" value="Children's movie">Children's movie</option>
+                <option class="ggf" value="Documentary">Documentary</option>
+            </select>
         </div>
         <div class="serie" id="descrip">
             <p class="labe">Description</p><textarea class="bawx" required></textarea>

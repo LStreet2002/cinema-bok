@@ -46,6 +46,7 @@ async function plu() {
             description: document.querySelector("#descrip").querySelector(".bawx").value,
             additional: document.querySelector("#addit").querySelector(".bawx").value,
             age: document.getElementsByName("active")[0].innerText,
+            genre: document.getElementById("#gen").value,
             trailer: file.name
         }).then(async function (docRef) {
             var storageRef = firebase.storage().ref("trailers/" + file.name);

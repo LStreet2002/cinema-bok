@@ -25,6 +25,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
                             var pocket = document.createElement("div")
                             pocket.setAttribute("onclick", "edit(this)")
                             pocket.classList.add("pocket")
+                            pocket.setAttribute("name", doc.data().genre)
 
                             var trai = document.createElement("video");
                             trai.setAttribute("name", doc.data().trailer)
@@ -78,6 +79,7 @@ function edit(e) {
     document.querySelector("#trai").setAttribute("value", e.querySelector(".prev").getAttribute("name"))
     document.querySelector("#title").querySelector(".pbawx").innerText = e.querySelector(".litle").innerText
     document.querySelector("#length").querySelector(".bawx").value = e.querySelector(".time").innerText
+    document.getElementById('gen').value = e.getAttribute("name")
     document.querySelector("#descrip").querySelector(".bawx").value = e.querySelector(".dess").innerText
     document.querySelector("#addit").querySelector(".bawx").value = e.querySelector(".adie").innerText
     var rese = document.querySelectorAll(".agi")
@@ -143,6 +145,7 @@ async function updat() {
                 description: document.querySelector("#descrip").querySelector(".bawx").value,
                 additional: document.querySelector("#addit").querySelector(".bawx").value,
                 age: document.getElementsByName("active")[0].innerText,
+                genre: document.getElementById("gen").value,
             }).then(function () {
                 location.reload()
             })
@@ -155,6 +158,7 @@ async function updat() {
                 description: document.querySelector("#descrip").querySelector(".bawx").value,
                 additional: document.querySelector("#addit").querySelector(".bawx").value,
                 age: document.getElementsByName("active")[0].innerText,
+                genre: document.getElementById("gen").value,
                 trailer: document.querySelector("#trai").getAttribute("value")
             }).then(async function () {
                 await storageRef
@@ -167,5 +171,23 @@ async function updat() {
                         location.reload()
                     })
             })
+    }
+}
+function file(e) {
+    var lod = document.querySelectorAll(".pocket")
+    var tes = document.getElementsByName(e.value)
+    console.log(tes)
+    if (e.value === "All") {
+        for (var d = 0; d < lod.length; d++) {
+            lod[d].style.display = "grid"
+        }
+    }
+    else {
+        for (var d = 0; d < lod.length; d++) {
+            lod[d].style.display = "none"
+        }
+        for (var l = 0; l < tes.length; l++) {
+            tes[l].style.display = "grid"
+        }
     }
 }

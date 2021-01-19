@@ -8,6 +8,26 @@ body {
   font-family: 'Delius', cursive;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 51, 51, 0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
 .pocket {
   padding: 2vh;
   margin-top: 3vh;
@@ -28,6 +48,19 @@ body {
   margin-left: 3vw;
   font-size: 1.4vw;
   color: white;
+}
+
+.pocket #genre {
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
+  grid-area: genre;
+  display: -ms-grid;
+  display: grid;
+      grid-template-columns: 1fr 5fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "labe bawx";
+  margin-bottom: 1vh;
+  margin-left: -18vw;
 }
 
 .pocket:hover {
@@ -79,7 +112,8 @@ body {
 }
 
 #helder {
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 95vh;
 }
 
 #bar {
@@ -110,7 +144,26 @@ body {
       grid-template-columns: 3fr 7fr 3fr;
   -ms-grid-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
       grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
-      grid-template-areas: ". vid ." ". . ." ". sele ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox lbox" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "delete . update";
+      grid-template-areas: ". vid ." ". . ." ". sele ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox genre" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "delete . update";
+}
+
+.lbaw {
+  width: 30vw;
+}
+
+#genre {
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
+  grid-area: genre;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "labe bawx";
+  margin-bottom: 1vh;
+  margin-left: -18vw;
 }
 
 #trai {
@@ -146,7 +199,7 @@ body {
 #length {
   -ms-grid-row: 7;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  -ms-grid-column-span: 2;
   grid-area: lbox;
 }
 
@@ -313,5 +366,14 @@ body {
           align-items: center;
   background-color: white;
   margin: 0px;
+}
+
+#seletor {
+  height: 5vh;
+  width: 100vw;
+  margin: 0px;
+  background-color: #011638;
+  color: white;
+  border: 0px;
 }
 /*# sourceMappingURL=lis.css.map */
