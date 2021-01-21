@@ -25,6 +25,10 @@ body {
   cursor: pointer;
 }
 
+#subroom {
+  display: none;
+}
+
 #subroom div {
   display: none;
 }
