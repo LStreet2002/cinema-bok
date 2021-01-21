@@ -26,7 +26,7 @@ function login(e) {
                             auth.signInWithEmailAndPassword(email, password).then((cred) => {
                                 window.location.replace("menu.html");
                             }).catch(error => document.querySelector("#conform").style.backgroundColor = "red",
-                                setTimeout(function () { document.querySelector("#conform").style.backgroundColor = " #0A0903"; }, 15000))
+                                setTimeout(function () { document.querySelector("#conform").style.backgroundColor = " #0A0903"; }, 1500))
 
                         })();
                     }

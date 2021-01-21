@@ -1,0 +1,81 @@
+body{
+    background-color: #4392F1;
+    overflow: hidden;
+    margin:0px;
+}
+* {
+    font-family: 'Delius', cursive;
+}
+#bar {
+    text-align: center;
+    color:white;
+    background-color: #F18282;
+    width:100vw;
+    margin-left:0vw;
+    position:absolute;
+    top:95vh;
+    padding-top:1.5vh;
+    padding-bottom:1.5vh;
+    margin-bottom:0vh;
+    }
+    .hovv:hover {
+        cursor: pointer;
+    }
+#subroom {
+    div{
+
+    
+    display:none;
+    }
+}
+#times {
+    display: none;
+}
+
+#allroom {
+    display:grid;
+    grid-template-columns:1fr 3fr 1fr 3fr 1fr 3fr 1fr;
+    grid-template-rows: 2fr 6fr 2fr 6fr;
+    grid-template-areas: 
+    "titular titular titular titular titular titular"
+    ". A . B . C"
+    ". . . . . ."
+    ". D . E .F";
+    margin-top:5vh;
+    color:white;
+    height:85vh;
+}
+#titular {
+    font-size:4.5vw;
+    grid-area:titular;
+    width:100vw;
+    text-align: center;
+}
+#AG {
+    grid-area:A;
+}
+#BG {
+grid-area:B;
+}
+#CG {
+    grid-area:C;
+}
+#DG {
+     grid-area:D;
+}
+#EG {
+    grid-area:E;
+}
+#FG {
+    grid-area:F;
+}
+.roomb {
+   width:100%;
+   height:100%;
+display:flex;
+justify-content: center;
+align-items: center;
+font-size:4vw;
+border:2px solid white;
+margin:0px;
+}
