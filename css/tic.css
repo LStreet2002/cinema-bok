@@ -29,7 +29,7 @@ body {
   display: none;
 }
 
-#subroom div {
+#subroom .disp {
   display: none;
 }
 

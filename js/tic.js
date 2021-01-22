@@ -1,5 +1,25 @@
-firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
+        var roms = ["A", "B", "C", "D", "E", "F"]
+        for (var i = 0; i < roms.length; i++) {
+            await db
+                .collection(roms[i]).where("type", "==", "seat")
+                .get()
+                .then(async function (querySnapshot) {
+                    querySnapshot.forEach(async function (doc) {
+                        var conta = document.createElement("img")
+                        conta.classList.add("conta")
+                        if (doc.data().status === "booked") {
+                            conta.src = "/pic/book.png"
+                        }
+                        else {
+                            conta.src = "/pic/unbook.png"
+                        }
+
+                        document.querySelector("#" + roms[i]).querySelector(".megaseat").appendChild(conta)
+                    })
+                })
+        }
     }
     else {
         window.location.replace("login.html")
@@ -20,6 +40,10 @@ function back() {
     else {
         if (document.querySelector("#subroom").style.display === "block") {
             document.querySelector("#subroom").style.display = "none"
+            var tt = document.querySelectorAll(".disp")
+            for (var i = 0; i < tt.length; i++) {
+                tt[i].style.display = "none"
+            }
             document.querySelector("#allroom").style.display = "grid"
         }
         else {
