@@ -24,18 +24,28 @@ function back() {
         }
         else {
             document.querySelector("#times").style.display = "none"
+            document.querySelector("#" + document.querySelector("#ident").innerText).style.display = "block"
             document.querySelector("#subroom").style.display = "block"
         }
     }
 }
 
-var disp = document.querySelectorAll(".disp")
-for (var i = 0; i < disp.length; i++) {
-    disp[i].addEventListener("click", function (event) {
-        console.log("hhh")
+var timmy = document.querySelectorAll(".timmy")
+for (var i = 0; i < timmy.length; i++) {
+    timmy[i].addEventListener("click", function (event) {
         document.querySelector("#times").style.display = "grid"
         document.querySelector("#subroom").style.display = "none"
         event.target.parentNode.style.display = "none"
-        document.querySelector("#ident").innerText = event.target.id
+        document.querySelector("#ident").innerText = event.target.parentNode.id
     });
+}
+
+async function movvie(e) {
+    test = String(e.value)
+    e.setAttribute("name", e.options[e.selectedIndex].getAttribute("name"))
+    await db.collection(e.parentNode.id).doc(e.name).get().then(function (doc) {
+        if (doc.exists) {
+            e.parentNode.querySelector(".screen").innerText = doc.data()[test];
+        }
+    })
 }
