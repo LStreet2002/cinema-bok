@@ -25,12 +25,45 @@ body{
     display:none;
     .disp{ 
     display:none;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 14fr 2fr;
+    grid-template-areas:
+    ". selet ."
+    "screen screen screen"
+    "seat seat seat"
+    "refund . showing" ;
+    width:90vw;
+    margin-left:5vw;
+    height:85vh;
     }
+}
+.yeah {
+    grid-area:selet;
 }
 #times {
     display: none;
 }
-
+.screen {
+    grid-area:screen;
+    background-color: white;
+    text-align: center;
+    width:90vw;
+}
+.megaseat {
+    grid-area:seat;
+}
+.refund {
+    grid-area:refund;
+    background-color:#0A0903 ;
+border:0px;
+color:white;
+}
+.timmy {
+    grid-area:showing;
+    background-color:#0A0903;
+    border:0px;
+color:white;
+}
 #allroom {
     display:grid;
     grid-template-columns:1fr 3fr 1fr 3fr 1fr 3fr 1fr;

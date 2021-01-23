@@ -31,10 +31,59 @@ body {
 
 #subroom .disp {
   display: none;
+  -ms-grid-columns: 3fr 1fr 3fr;
+      grid-template-columns: 3fr 1fr 3fr;
+  -ms-grid-rows: 1fr 1fr 14fr 2fr;
+      grid-template-rows: 1fr 1fr 14fr 2fr;
+      grid-template-areas: ". selet ." "screen screen screen" "seat seat seat" "refund . showing";
+  width: 90vw;
+  margin-left: 5vw;
+  height: 85vh;
+}
+
+.yeah {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: selet;
 }
 
 #times {
   display: none;
+}
+
+.screen {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: screen;
+  background-color: white;
+  text-align: center;
+  width: 90vw;
+}
+
+.megaseat {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: seat;
+}
+
+.refund {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: refund;
+  background-color: #0A0903;
+  border: 0px;
+  color: white;
+}
+
+.timmy {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: showing;
+  background-color: #0A0903;
+  border: 0px;
+  color: white;
 }
 
 #allroom {
