@@ -1,6 +1,7 @@
 firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
         var roms = ["A", "B", "C", "D", "E", "F"]
+        trallers()
         for (var i = 0; i < roms.length; i++) {
             await db
                 .collection(roms[i]).doc("Monday").get().then(function (doc) {
@@ -109,4 +110,35 @@ async function movvie(e) {
                 })
         }
     })
+}
+var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+var teyms = ["nine", "eleven", "thirteen", "fifteen", "seventeen"]
+var teymsx = ["9:00", "11:00", "13:00", "15:00", "17:00"]
+function trallers() {
+    for (var x = 0; x < days.length; x++) {
+        var totee = document.createElement("div")
+        totee.id = days[x]
+        totee.classList.add("days")
+        totee.innerText = days[x]
+
+        for (var i = 0; i < teyms.length; i++) {
+            var sup = document.createElement("div")
+            sup.classList.add(teyms[i], "timeput")
+
+            var selt = document.createElement("p")
+            selt.setAttribute("name", teyms[i])
+            selt.classList.add("daytime")
+            selt.innerText = teymsx[i]
+
+            var drope = document.createElement("select")
+            drope.classList.add("filmselec")
+
+            sup.appendChild(selt)
+            sup.appendChild(drope)
+
+            totee.appendChild(sup)
+        }
+        document.querySelector("#times").appendChild(totee)
+
+    }
 }

@@ -111,3 +111,27 @@ font-size:4vw;
 border:2px solid white;
 margin:0px;
 }
+#times {
+    overflow-y:scroll;
+    height:95vh;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(51, 51, 51,0.5);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(51,51,51);
+  }
+  
