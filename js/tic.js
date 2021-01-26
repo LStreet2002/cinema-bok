@@ -119,7 +119,12 @@ function trallers() {
         var totee = document.createElement("div")
         totee.id = days[x]
         totee.classList.add("days")
-        totee.innerText = days[x]
+
+        var head = document.createElement("p")
+        head.innerText = days[x].toUpperCase()
+        head.classList.add("dayid")
+
+        totee.appendChild(head)
 
         for (var i = 0; i < teyms.length; i++) {
             var sup = document.createElement("div")
@@ -128,7 +133,7 @@ function trallers() {
             var selt = document.createElement("p")
             selt.setAttribute("name", teyms[i])
             selt.classList.add("daytime")
-            selt.innerText = teymsx[i]
+            selt.innerText = teymsx[i] + "-"
 
             var drope = document.createElement("select")
             drope.classList.add("filmselec")
@@ -140,5 +145,20 @@ function trallers() {
         }
         document.querySelector("#times").appendChild(totee)
 
+    }
+    var butt = document.createElement("button")
+    butt.innerText = "Update"
+    butt.setAttribute("onclick", "settimes()")
+    butt.id = "butt"
+
+    document.querySelector("#times").appendChild(butt)
+}
+async function settimes() {
+    for (var x = 0; x < days.length; x++) {
+        for (var i = 0; i < teyms.length; i++) {
+            await db.collection(document.querySelector("#ident").innerText).doc(days[x]).update({
+                [teyms[i]]: document.querySelector("#" + days[x]).querySelector("." + teyms[i]).querySelector(".filmselec").value,
+            })
+        }
     }
 }

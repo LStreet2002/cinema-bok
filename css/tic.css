@@ -49,6 +49,10 @@ body {
 
 #times {
   display: none;
+  margin-left: 5vw;
+  width: 90vw;
+  padding-right: 5vw;
+  height: 95vh;
 }
 
 .screen {
@@ -183,5 +187,60 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #333333;
+}
+
+.dayid {
+  background-color: #0A0903;
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  font-size: 1.8vw;
+}
+
+.timeput {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 1fr 7fr;
+      grid-template-columns: 1fr 7fr;
+      grid-template-areas: "tex seles";
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
+
+.daytime {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: tex;
+  font-size: 1.9vw;
+  color: white;
+}
+
+.filmselec {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: seles;
+  font-size: 1.9vw;
+  border: none;
+}
+
+#ident {
+  font-size: 3vw;
+  text-align: center;
+  color: white;
+}
+
+#butt {
+  width: 40vw;
+  margin-left: 25vw;
+  margin-bottom: 4vh;
+  background-color: #0A0903;
+  color: white;
+  border: none;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 /*# sourceMappingURL=tic.css.map */

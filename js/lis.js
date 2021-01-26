@@ -6,7 +6,7 @@ function back() {
         document.querySelector("#helder").style.display = "grid"
     }
     else {
-        window.location.replace("menu.html")
+        window.location.replace("login.html")
     }
 }
 firebase.auth().onAuthStateChanged(async function (user) {
