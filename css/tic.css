@@ -243,4 +243,8 @@ body {
   padding-top: 1vh;
   padding-bottom: 1vh;
 }
+
+textarea:focus, input:focus {
+  outline: none;
+}
 /*# sourceMappingURL=tic.css.map */

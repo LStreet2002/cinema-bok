@@ -376,4 +376,8 @@ body {
   color: white;
   border: 0px;
 }
+
+textarea:focus, input:focus {
+  outline: none;
+}
 /*# sourceMappingURL=lis.css.map */

@@ -3,10 +3,11 @@
 function back() {
     if (document.querySelector("#form").style.display === "grid") {
         document.querySelector("#form").style.display = "none"
-        document.querySelector("#helder").style.display = "grid"
+        document.querySelector("#helder").style.display = "block"
+        document.querySelector("#seletor").style.display = "block"
     }
     else {
-        window.location.replace("login.html")
+        window.location.replace("menu.html")
     }
 }
 firebase.auth().onAuthStateChanged(async function (user) {
@@ -74,6 +75,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 function edit(e) {
     document.querySelector("#form").style.display = "grid"
     document.querySelector("#helder").style.display = "none"
+    document.querySelector("#seletor").style.display = "none"
     document.querySelector("#trai").src = e.querySelector(".prev").src
     document.querySelector("#trai").setAttribute("name", e.querySelector(".prev").getAttribute("name"))
     document.querySelector("#trai").setAttribute("value", e.querySelector(".prev").getAttribute("name"))

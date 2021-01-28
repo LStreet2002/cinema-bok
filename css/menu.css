@@ -91,4 +91,8 @@ body {
 .hovv:hover {
   cursor: pointer;
 }
+
+textarea:focus, input:focus {
+  outline: none;
+}
 /*# sourceMappingURL=menu.css.map */

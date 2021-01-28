@@ -2,6 +2,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
         var roms = ["A", "B", "C", "D", "E", "F"]
         trallers()
+        roomtimes()
         for (var i = 0; i < roms.length; i++) {
             await db
                 .collection(roms[i]).doc("Monday").get().then(function (doc) {
@@ -82,6 +83,7 @@ for (var i = 0; i < timmy.length; i++) {
         document.querySelector("#subroom").style.display = "none"
         event.target.parentNode.style.display = "none"
         document.querySelector("#ident").innerText = event.target.parentNode.id
+        opton[i].value = e.getAttribute("name")
 
     });
 }
@@ -160,5 +162,21 @@ async function settimes() {
                 [teyms[i]]: document.querySelector("#" + days[x]).querySelector("." + teyms[i]).querySelector(".filmselec").value,
             })
         }
+    }
+}
+async function roomtimes() {
+    var roomblos = document.querySelectorAll(".yeah")
+    for (var y = 0; y < roomblos.length; y++) {
+        for (var x = 0; x < days.length; x++) {
+
+            for (var i = 0; i < teyms.length; i++) {
+                var dayet = document.createElement("option")
+                dayet.setAttribute("value", teyms[i])
+                dayet.setAttribute("name", days[x])
+                dayet.innerText = days[x] + " " + teymsx[i]
+                roomblos[y].appendChild(dayet)
+            }
+        }
+
     }
 }

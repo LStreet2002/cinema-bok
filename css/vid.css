@@ -233,4 +233,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
 }
+
+textarea:focus, input:focus {
+  outline: none;
+}
 /*# sourceMappingURL=vid.css.map */

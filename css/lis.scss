@@ -270,3 +270,6 @@ height:21vh;
     
     }
 }
+textarea:focus, input:focus{
+    outline: none;
+}
