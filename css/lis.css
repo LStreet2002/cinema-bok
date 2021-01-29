@@ -377,7 +377,7 @@ body {
   border: 0px;
 }
 
-textarea:focus, input:focus {
+textarea:focus, input:focus, button:focus, select:focus {
   outline: none;
 }
 /*# sourceMappingURL=lis.css.map */

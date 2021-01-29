@@ -270,6 +270,6 @@ height:21vh;
     
     }
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus,button:focus,select:focus {
     outline: none;
 }

@@ -163,6 +163,6 @@ font-size:3vh;
     justify-content:center;
     align-items: center;
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus,button:focus,select:focus {
     outline: none;
 }

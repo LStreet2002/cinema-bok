@@ -78,12 +78,23 @@ function back() {
 
 var timmy = document.querySelectorAll(".timmy")
 for (var i = 0; i < timmy.length; i++) {
-    timmy[i].addEventListener("click", function (event) {
+    timmy[i].addEventListener("click", async function (event) {
         document.querySelector("#times").style.display = "grid"
         document.querySelector("#subroom").style.display = "none"
         event.target.parentNode.style.display = "none"
         document.querySelector("#ident").innerText = event.target.parentNode.id
-        opton[i].value = e.getAttribute("name")
+        for (var x = 0; x < days.length; x++) {
+
+            for (var i = 0; i < teyms.length; i++) {
+                var ti = document.querySelector("#times")
+
+                await db.collection(ti.querySelector("#ident").innerText).doc(days[x]).get().then(async function (doc) {
+                    if (doc.exists) {
+                        ti.querySelector("#" + days[x]).querySelector("." + teyms[i]).querySelector(".filmselec").value = doc.data()[teyms[i]]
+                    }
+                })
+            }
+        }
 
     });
 }
@@ -150,6 +161,7 @@ function trallers() {
     }
     var butt = document.createElement("button")
     butt.innerText = "Update"
+    butt.classList.add("hovv")
     butt.setAttribute("onclick", "settimes()")
     butt.id = "butt"
 

@@ -66,6 +66,6 @@ margin-bottom:0vh;
 .hovv:hover {
     cursor: pointer;
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus,button:focus,select:focus {
     outline: none;
 }
