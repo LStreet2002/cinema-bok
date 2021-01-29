@@ -1,6 +1,6 @@
+var roms = ["A", "B", "C", "D", "E", "F"]
 firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
-        var roms = ["A", "B", "C", "D", "E", "F"]
         trallers()
         roomtimes()
         for (var i = 0; i < roms.length; i++) {
@@ -15,8 +15,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     querySnapshot.forEach(async function (doc) {
                         var conta = document.createElement("img")
                         conta.classList.add("conta")
+                        conta.setAttribute("onclick", "seatinfo(this)")
                         conta.id = doc.id
-                        if (doc.data().mondaynine === "booked") {
+                        if (doc.data().Mondaynine === "booked") {
                             conta.src = "/pic/book.png"
                         }
                         else {
@@ -190,5 +191,25 @@ async function roomtimes() {
             }
         }
 
+    }
+}
+async function seatinfo(e) {
+    document.querySelector("#seatinfo").style.display = "block"
+    document.querySelector("#seatinfo").innerText = "I display the information for Room " + e.parentNode.parentNode.id + "Seat " + e.id
+}
+var tem = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+async function slapseats() {
+    for (var y = 0; y < roms.length; y++) {
+        for (var f = 0; f < tem.length; f++) {
+            for (var x = 0; x < days.length; x++) {
+                for (var i = 0; i < teyms.length; i++) {
+                    var itsit = days[x] + teyms[i]
+                    await db
+                        .collection(roms[y]).doc(tem[f]).update({
+                            [itsit]: "unbooked"
+                        })
+                }
+            }
+        }
     }
 }

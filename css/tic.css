@@ -247,4 +247,9 @@ body {
 textarea:focus, input:focus, button:focus, select:focus {
   outline: none;
 }
+
+#seatinfo {
+  display: none;
+  background-color: white;
+}
 /*# sourceMappingURL=tic.css.map */
