@@ -19,9 +19,11 @@ firebase.auth().onAuthStateChanged(async function (user) {
                         conta.id = doc.id
                         if (doc.data().Mondaynine === "booked") {
                             conta.src = "/pic/book.png"
+                            conta.setAttribute("name", "booked")
                         }
                         else {
                             conta.src = "/pic/unbook.png"
+                            conta.setAttribute("name", "unbooked")
                         }
 
                         document.querySelector("#" + roms[i]).querySelector(".megaseat").appendChild(conta)
@@ -116,9 +118,11 @@ async function movvie(e) {
                         var reconta = document.querySelector("#" + doc.id)
                         if (doc.data()[tillee] === "booked") {
                             reconta.src = "/pic/book.png"
+                            reconta.setAttribute("name", "booked")
                         }
                         else {
                             reconta.src = "/pic/unbook.png"
+                            reconta.setAttribute("name", "unbooked")
                         }
                     })
                 })
@@ -195,7 +199,14 @@ async function roomtimes() {
 }
 async function seatinfo(e) {
     document.querySelector("#seatinfo").style.display = "block"
-    document.querySelector("#seatinfo").innerText = "I display the information for Room " + e.parentNode.parentNode.id + "Seat " + e.id
+    document.querySelector("#greyed").style.display = "block"
+    document.querySelector("#seatio").innerText = "I display the information for Room " + e.parentNode.parentNode.id + " Seat " + e.id + " at " + e.parentNode.parentNode.querySelector(".yeah").options[e.parentNode.parentNode.querySelector(".yeah").selectedIndex].innerText
+    if (e.getAttribute("name") === "booked") {
+        document.querySelector("#seatinfo").querySelector("#unbok").style.display = "block"
+    }
+    else {
+        document.querySelector("#seatinfo").querySelector("#unbok").style.display = "none"
+    }
 }
 var tem = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 async function slapseats() {
@@ -212,4 +223,8 @@ async function slapseats() {
             }
         }
     }
+}
+function antiseat() {
+    document.querySelector("#seatinfo").style.display = "none"
+    document.querySelector("#greyed").style.display = "none"
 }

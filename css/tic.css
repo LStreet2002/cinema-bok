@@ -251,5 +251,21 @@ textarea:focus, input:focus, button:focus, select:focus {
 #seatinfo {
   display: none;
   background-color: white;
+  position: absolute;
+  width: 60%;
+  height: 70%;
+  top: 15%;
+  left: 20%;
+  z-index: 4;
+}
+
+#greyed {
+  height: 95vh;
+  width: 100vw;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  z-index: 3;
+  display: none;
 }
 /*# sourceMappingURL=tic.css.map */
