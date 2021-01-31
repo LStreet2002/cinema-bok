@@ -8,27 +8,29 @@ firebase.auth().onAuthStateChanged(async function (user) {
                 .collection(roms[i]).doc("Monday").get().then(function (doc) {
                     document.querySelector("#" + roms[i]).querySelector(".screen").innerText = doc.data().nine
                 })
-            await db
-                .collection(roms[i]).where("type", "==", "seat")
-                .get()
-                .then(async function (querySnapshot) {
-                    querySnapshot.forEach(async function (doc) {
-                        var conta = document.createElement("img")
-                        conta.classList.add("conta")
-                        conta.setAttribute("onclick", "seatinfo(this)")
-                        conta.id = doc.id
-                        if (doc.data().Mondaynine === "booked") {
-                            conta.src = "/pic/book.png"
-                            conta.setAttribute("name", "booked")
-                        }
-                        else {
-                            conta.src = "/pic/unbook.png"
-                            conta.setAttribute("name", "unbooked")
-                        }
+            for (var f = 0; f < tem.length; f++) {
+                await db
+                    .collection(roms[i]).doc(tem[f])
+                    .get()
+                    .then(function (doc) {
+                        if (doc.exists) {
+                            var conta = document.createElement("img")
+                            conta.classList.add("conta")
+                            conta.setAttribute("onclick", "seatinfo(this)")
+                            conta.id = doc.id
+                            if (doc.data().Mondaynine === "booked") {
+                                conta.src = "/pic/book.png"
+                                conta.setAttribute("name", "booked")
+                            }
+                            else {
+                                conta.src = "/pic/unbook.png"
+                                conta.setAttribute("name", "unbooked")
+                            }
 
-                        document.querySelector("#" + roms[i]).querySelector(".megaseat").appendChild(conta)
+                            document.querySelector("#" + roms[i]).querySelector(".megaseat").appendChild(conta)
+                        }
                     })
-                })
+            }
         }
         await db
             .collection("movies")
@@ -110,12 +112,14 @@ async function movvie(e) {
     await db.collection(e.parentNode.id).doc(e.name).get().then(async function (doc) {
         if (doc.exists) {
             e.parentNode.querySelector(".screen").innerText = doc.data()[test];
+        }
+        for (var f = 0; f < tem.length; f++) {
             await db
-                .collection(e.parentNode.id).where("type", "==", "seat")
+                .collection(e.parentNode.id).doc(tem[f])
                 .get()
-                .then(async function (querySnapshot) {
-                    querySnapshot.forEach(async function (doc) {
-                        var reconta = document.querySelector("#" + doc.id)
+                .then(function (doc) {
+                    if (doc.exists) {
+                        var reconta = e.parentNode.querySelector("#" + doc.id)
                         if (doc.data()[tillee] === "booked") {
                             reconta.src = "/pic/book.png"
                             reconta.setAttribute("name", "booked")
@@ -124,7 +128,7 @@ async function movvie(e) {
                             reconta.src = "/pic/unbook.png"
                             reconta.setAttribute("name", "unbooked")
                         }
-                    })
+                    }
                 })
         }
     })
@@ -199,8 +203,11 @@ async function roomtimes() {
 }
 async function seatinfo(e) {
     document.querySelector("#seatinfo").style.display = "block"
+    document.querySelector("#seatinfo").setAttribute("value", e.id)
+    document.querySelector("#seatinfo").setAttribute("name", e.parentNode.parentNode.id)
     document.querySelector("#greyed").style.display = "block"
     document.querySelector("#seatio").innerText = "I display the information for Room " + e.parentNode.parentNode.id + " Seat " + e.id + " at " + e.parentNode.parentNode.querySelector(".yeah").options[e.parentNode.parentNode.querySelector(".yeah").selectedIndex].innerText
+    document.querySelector("#confirm").style.display = "none"
     if (e.getAttribute("name") === "booked") {
         document.querySelector("#seatinfo").querySelector("#unbok").style.display = "block"
     }
@@ -227,4 +234,44 @@ async function slapseats() {
 function antiseat() {
     document.querySelector("#seatinfo").style.display = "none"
     document.querySelector("#greyed").style.display = "none"
+}
+function credent() {
+    document.querySelector("#confirm").style.display = "grid"
+}
+async function refuns(e) {
+    const logins = document.querySelector("#confirm");
+
+
+    const email = "authsender@gmail.com";
+    const password = logins.querySelector("#passowrd").value;
+
+    dopper = document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector(".yeah")
+
+    // firebase login
+    auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
+        await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).update({
+            [dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value]: "unbooked"
+        }).then(async function resez() {
+            for (var f = 0; f < tem.length; f++) {
+                await db
+                    .collection(e.parentNode.parentNode.getAttribute("name")).doc(tem[f])
+                    .get()
+                    .then(function (doc) {
+                        if (doc.exists) {
+                            var reconta = document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + doc.id)
+                            if (doc.data()[dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value] === "booked") {
+                                reconta.src = "/pic/book.png"
+                                reconta.setAttribute("name", "booked")
+                            }
+                            else {
+                                reconta.src = "/pic/unbook.png"
+                                reconta.setAttribute("name", "unbooked")
+                            }
+                        }
+                    })
+            }
+            antiseat()
+        });
+    }).catch(error => console.log(error));
+    ;
 }
