@@ -216,7 +216,7 @@ async function seatinfo(e) {
     }
 }
 var tem = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
-async function slapseats() {
+/*async function slapseats() {
     for (var y = 0; y < roms.length; y++) {
         for (var f = 0; f < tem.length; f++) {
             for (var x = 0; x < days.length; x++) {
@@ -230,7 +230,7 @@ async function slapseats() {
             }
         }
     }
-}
+}*/
 function antiseat() {
     document.querySelector("#seatinfo").style.display = "none"
     document.querySelector("#greyed").style.display = "none"

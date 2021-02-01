@@ -252,8 +252,12 @@ textarea:focus, input:focus, button:focus, select:focus {
   display: none;
   background-color: white;
   position: absolute;
-  width: 60%;
-  height: 70%;
+  width: 55vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  height: 50vh;
   top: 15%;
   left: 20%;
   z-index: 4;
@@ -267,5 +271,48 @@ textarea:focus, input:focus, button:focus, select:focus {
   position: absolute;
   z-index: 3;
   display: none;
+}
+
+#confirm {
+  display: none;
+  -ms-grid-columns: 5fr 1fr;
+      grid-template-columns: 5fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "passowe refun";
+}
+
+#refunser {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: refun;
+  border: none;
+  color: white;
+  background-color: #F18282;
+}
+
+#unbok {
+  width: 33vw;
+  margin-left: auto;
+  margin-right: auto;
+  height: 4vw;
+  border: none;
+  color: white;
+  background-color: #F18282;
+}
+
+#seatio {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#passowrd {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: passowe;
+  border: none;
+  -webkit-box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
+          box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
+  background-color: #efefef;
 }
 /*# sourceMappingURL=tic.css.map */
