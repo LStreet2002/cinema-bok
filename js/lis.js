@@ -126,6 +126,7 @@ function chose() {
     chooser.click()
 }
 async function delet() {
+    document.querySelector("#delete").innerText = "Deleting..."
     await storageRef
         .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function () {
             await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText).delete().then(function () {
@@ -134,6 +135,7 @@ async function delet() {
                     if (toph[i].innerText === document.querySelector("#title").querySelector(".pbawx").innerText)
                         toph[i].parentNode.style.display = "none"
                 }
+                document.querySelector("#update").innerText = "UPDATE"
                 back();
             })
         })
@@ -185,6 +187,7 @@ async function updat() {
             }
         }
     }
+    document.querySelector("#update").innerText = "Updating..."
     if (document.querySelector("#trai").getAttribute("name") === document.querySelector("#trai").getAttribute("value")) {
         console.log("pair")
         await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)

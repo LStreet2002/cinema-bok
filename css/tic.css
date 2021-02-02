@@ -45,6 +45,8 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: selet;
+  background-color: #011638;
+  color: white;
 }
 
 #times {

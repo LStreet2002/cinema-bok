@@ -92,7 +92,7 @@ async function plu() {
             }
         }
     }
-
+    document.querySelector("#add").innerText = "Adding..."
 
     await db.collection("movies").doc(document.querySelector("#title").querySelector(".bawx").value)
         .set({

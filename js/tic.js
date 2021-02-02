@@ -156,6 +156,7 @@ function trallers() {
             selt.setAttribute("name", teyms[i])
             selt.classList.add("daytime")
             selt.innerText = teymsx[i] + "-"
+            selt.setAttribute("value", teymsx[i])
 
             var drope = document.createElement("select")
             drope.classList.add("filmselec")
@@ -177,6 +178,7 @@ function trallers() {
     document.querySelector("#times").appendChild(butt)
 }
 async function settimes() {
+    document.querySelector("#butt").innerText = "Updating..."
     for (var x = 0; x < days.length; x++) {
         for (var i = 0; i < teyms.length; i++) {
             await db.collection(document.querySelector("#ident").innerText).doc(days[x]).update({
@@ -184,6 +186,31 @@ async function settimes() {
             })
         }
     }
+    await db
+        .collection("movies")
+        .get()
+        .then(async function (querySnapshot) {
+            querySnapshot.forEach(async function (doc) {
+                var sss = document.querySelectorAll(".filmselec");
+                tempa = []
+                tempax = []
+                for (var i = 0; i < sss.length; i++) {
+
+                    if (sss[i].options[sss[i].selectedIndex].innerText === doc.id) {
+
+                        var timt = sss[i].parentNode.parentNode.id + ":" + sss[i].options[sss[i].selectedIndex].parentNode.parentNode.querySelector(".daytime").getAttribute("value")
+                        timtx = sss[i].parentNode.parentNode.id + sss[i].options[sss[i].selectedIndex].parentNode.parentNode.querySelector(".daytime").getAttribute("name")
+                        tempa.push(timt)
+                        tempax.push(timtx)
+                    }
+                }
+                db.collection("movies").doc(doc.id).collection("Rooms").doc(document.querySelector("#ident").innerText).set({
+                    times: tempa,
+                    timesx: tempax
+                })
+            })
+        })
+    document.querySelector("#butt").innerText = "Update"
 }
 async function roomtimes() {
     var roomblos = document.querySelectorAll(".yeah")
