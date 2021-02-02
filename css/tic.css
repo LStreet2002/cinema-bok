@@ -304,6 +304,7 @@ textarea:focus, input:focus, button:focus, select:focus {
 #seatio {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 #passowrd {
@@ -314,5 +315,47 @@ textarea:focus, input:focus, button:focus, select:focus {
   -webkit-box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
           box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
   background-color: #efefef;
+}
+
+#bigone {
+  display: none;
+  position: absolute;
+  width: 55vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  height: 30vh;
+  top: 25%;
+  left: 20%;
+  z-index: 4;
+  background-color: white;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr 0.2fr 1fr 0.2fr 1fr;
+      grid-template-rows: 1fr 0.2fr 1fr 0.2fr 1fr;
+      grid-template-areas: "texall" "." "boxall" "." "refall";
+}
+
+#warne {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: texall;
+  text-align: center;
+}
+
+#posswo {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: boxall;
+}
+
+#refunar {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: refall;
+  color: white;
+  background-color: #F18282;
+  border: none;
 }
 /*# sourceMappingURL=tic.css.map */

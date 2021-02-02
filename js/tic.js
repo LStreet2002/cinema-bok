@@ -234,6 +234,7 @@ var tem = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine
 function antiseat() {
     document.querySelector("#seatinfo").style.display = "none"
     document.querySelector("#greyed").style.display = "none"
+    document.querySelector("#bigone").style.display = "none"
 }
 function credent() {
     document.querySelector("#confirm").style.display = "grid"
@@ -274,4 +275,32 @@ async function refuns(e) {
         });
     }).catch(error => console.log(error));
     ;
+}
+function refunsM(e) {
+    document.querySelector("#bigone").style.display = "grid"
+    document.querySelector("#bigone").setAttribute("name", e.parentNode.id)
+    document.querySelector("#greyed").style.display = "block"
+}
+async function unirefun(e) {
+    const logins = document.querySelector("#bigone");
+
+
+    const email = "authsender@gmail.com";
+    const password = logins.querySelector("#posswo").value;
+
+    roomie = e.parentNode.getAttribute("name")
+
+    dast = document.querySelector("#" + roomie).querySelector(".yeah")
+
+    // firebase login
+    auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
+        for (var i = 0; i < tem.length; i++) {
+            e.style.backgroundColor = "#ce7272"
+            e.innerText = "updating:" + tem[i]
+            await db.collection(roomie).doc(tem[i]).update({
+                [dast.options[dast.selectedIndex].getAttribute("name") + dast.value]: "unbooked"
+            })
+        } location.reload()
+    }).catch(error => e.innerText = "Wrong password",
+        setTimeout(function () { e.innerText = " CONFIRM" }, 1500));
 }
