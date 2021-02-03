@@ -17,54 +17,57 @@ firebase.auth().onAuthStateChanged(async function (user) {
             .get()
             .then(async function (querySnapshot) {
                 querySnapshot.forEach(async function (doc) {
-                    var storage = firebase.storage();
+                    if (doc.id === "none") { }
+                    else {
+                        var storage = firebase.storage();
 
-                    await storageRef
-                        .child("trailers/" + doc.data().trailer)
-                        .getDownloadURL()
-                        .then(function (url) {
-                            var pocket = document.createElement("div")
-                            pocket.setAttribute("onclick", "edit(this)")
-                            pocket.classList.add("pocket")
-                            pocket.setAttribute("name", doc.data().genre)
+                        await storageRef
+                            .child("trailers/" + doc.data().trailer)
+                            .getDownloadURL()
+                            .then(function (url) {
+                                var pocket = document.createElement("div")
+                                pocket.setAttribute("onclick", "edit(this)")
+                                pocket.classList.add("pocket")
+                                pocket.setAttribute("name", doc.data().genre)
 
-                            var trai = document.createElement("video");
-                            trai.setAttribute("name", doc.data().trailer)
-                            trai.classList.add("prev");
-                            trai.src = url;
+                                var trai = document.createElement("video");
+                                trai.setAttribute("name", doc.data().trailer)
+                                trai.classList.add("prev");
+                                trai.src = url;
 
-                            var age = document.createElement("img");
-                            age.classList.add("agg");
-                            age.setAttribute("name", doc.data().age)
-                            age.src = "pic/" + doc.data().age + ".png";
+                                var age = document.createElement("img");
+                                age.classList.add("agg");
+                                age.setAttribute("name", doc.data().age)
+                                age.src = "pic/" + doc.data().age + ".png";
 
-                            var litle = document.createElement("p")
-                            litle.classList.add("litle")
-                            litle.innerText = doc.data().title
+                                var litle = document.createElement("p")
+                                litle.classList.add("litle")
+                                litle.innerText = doc.data().title
 
-                            var time = document.createElement("p")
-                            time.classList.add("time")
-                            time.innerText = doc.data().length
+                                var time = document.createElement("p")
+                                time.classList.add("time")
+                                time.innerText = doc.data().length
 
-                            var dess = document.createElement("p")
-                            dess.classList.add("dess")
-                            dess.innerText = doc.data().description
+                                var dess = document.createElement("p")
+                                dess.classList.add("dess")
+                                dess.innerText = doc.data().description
 
-                            var adie = document.createElement("p")
-                            adie.classList.add("adie")
-                            adie.innerText = doc.data().additional
+                                var adie = document.createElement("p")
+                                adie.classList.add("adie")
+                                adie.innerText = doc.data().additional
 
-                            pocket.appendChild(trai)
-                            pocket.appendChild(litle)
-                            pocket.appendChild(time)
-                            pocket.appendChild(age)
-                            pocket.appendChild(dess)
-                            pocket.appendChild(adie)
+                                pocket.appendChild(trai)
+                                pocket.appendChild(litle)
+                                pocket.appendChild(time)
+                                pocket.appendChild(age)
+                                pocket.appendChild(dess)
+                                pocket.appendChild(adie)
 
-                            document.querySelector("#helder").appendChild(pocket)
+                                document.querySelector("#helder").appendChild(pocket)
 
 
-                        })
+                            })
+                    }
                 });
             })
     }
@@ -227,7 +230,6 @@ async function updat() {
 function file(e) {
     var lod = document.querySelectorAll(".pocket")
     var tes = document.getElementsByName(e.value)
-    console.log(tes)
     if (e.value === "All") {
         for (var d = 0; d < lod.length; d++) {
             lod[d].style.display = "grid"
