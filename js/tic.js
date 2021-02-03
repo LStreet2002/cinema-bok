@@ -1,4 +1,6 @@
 var roms = ["A", "B", "C", "D", "E", "F"]
+var dal = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+var howers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "nine", "10", "eleven", "12", "thirteen", "14", "fifteen", "16", "seventeen", "18", "19", "20", "21", "22", "23", "24"]
 firebase.auth().onAuthStateChanged(async function (user) {
     if (user) {
         trallers()
@@ -47,6 +49,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     })
                 }
             })
+        resetimer()
     }
     else {
         window.location.replace("login.html")
@@ -330,4 +333,39 @@ async function unirefun(e) {
         } location.reload()
     }).catch(error => e.innerText = "Wrong password",
         setTimeout(function () { e.innerText = " CONFIRM" }, 1500));
+}
+
+
+async function resetimer() {
+    setInterval(async function () {
+        var d = new Date();
+        var n = d.getDay();
+        var h = d.getHours();
+        var m = d.getMinutes()
+        if (m === 10) {
+            console.log("reset")
+            for (var i = 0; i < roms.length; i++) {
+                for (var y = 0; y < tem.length; y++) {
+                    await db.collection(roms[i]).doc(tem[y]).get().then(function (doc) {
+                        if (doc.exists) {
+                            if (doc.data()[dal[n] + howers[h]] == null) {
+                                ;
+                            }
+                            else {
+                                db.collection(roms[i]).doc(tem[y]).update({
+                                    [dal[n] + howers[h]]: "unbooked"
+                                })
+                            }
+                        }
+                    })
+
+                }
+
+            }
+        }
+
+        else {
+            console.log("no reset")
+        }
+    }, 60 * 1000);
 }
