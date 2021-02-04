@@ -10,29 +10,31 @@ firebase.auth().onAuthStateChanged(async function (user) {
                 .collection(roms[i]).doc("Monday").get().then(function (doc) {
                     document.querySelector("#" + roms[i]).querySelector(".screen").innerText = doc.data().nine
                 })
-            for (var f = 0; f < tem.length; f++) {
-                await db
-                    .collection(roms[i]).doc(tem[f])
-                    .get()
-                    .then(function (doc) {
+            await db
+                .collection(roms[i]).orderBy("number", "asc").get().then(async (querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        var conta = document.createElement("img")
+                        conta.id = doc.id
                         if (doc.exists) {
-                            var conta = document.createElement("img")
-                            conta.classList.add("conta")
-                            conta.setAttribute("onclick", "seatinfo(this)")
-                            conta.id = doc.id
-                            if (doc.data().Mondaynine === "booked") {
-                                conta.src = "/pic/book.png"
-                                conta.setAttribute("name", "booked")
-                            }
-                            else {
-                                conta.src = "/pic/unbook.png"
-                                conta.setAttribute("name", "unbooked")
-                            }
-
-                            document.querySelector("#" + roms[i]).querySelector(".megaseat").appendChild(conta)
+                            await db
+                                .collection(roms[i]).doc(doc.id).collection("txmes").doc("Mondaynine").get().then((doc) => {
+                                    if (doc.exists) {
+                                        conta.classList.add("conta")
+                                        conta.setAttribute("onclick", "seatinfo(this)")
+                                        if (doc.data().status === "booked") {
+                                            conta.src = "/pic/book.png"
+                                            conta.setAttribute("name", "booked")
+                                        }
+                                        else {
+                                            conta.src = "/pic/unbook.png"
+                                            conta.setAttribute("name", "unbooked")
+                                        }
+                                        document.querySelector("#" + roms[i - 1]).querySelector(".megaseat").appendChild(conta)
+                                    }
+                                })
                         }
                     })
-            }
+                })
         }
         await db
             .collection("movies")
@@ -112,29 +114,30 @@ async function movvie(e) {
     dae = e.options[e.selectedIndex].getAttribute("name")
     tillee = dae + test
     e.setAttribute("name", dae)
-    await db.collection(e.parentNode.id).doc(e.name).get().then(async function (doc) {
-        if (doc.exists) {
-            e.parentNode.querySelector(".screen").innerText = doc.data()[test];
-        }
-        for (var f = 0; f < tem.length; f++) {
-            await db
-                .collection(e.parentNode.id).doc(tem[f])
-                .get()
-                .then(function (doc) {
-                    if (doc.exists) {
-                        var reconta = e.parentNode.querySelector("#" + doc.id)
-                        if (doc.data()[tillee] === "booked") {
-                            reconta.src = "/pic/book.png"
-                            reconta.setAttribute("name", "booked")
-                        }
-                        else {
-                            reconta.src = "/pic/unbook.png"
-                            reconta.setAttribute("name", "unbooked")
-                        }
-                    }
-                })
-        }
-    })
+    console.log(e.parentNode.id)
+    await db
+        .collection(e.parentNode.id).orderBy("number", "asc").get().then(async (querySnapshot) => {
+            querySnapshot.forEach(async (doc) => {
+                var reconta = e.parentNode.querySelector("#" + doc.id)
+                if (doc.exists) {
+                    await db
+                        .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
+                            if (doc.exists) {
+                                console.log(doc.data())
+
+                                if (doc.data().status === "booked") {
+                                    reconta.src = "/pic/book.png"
+                                    reconta.setAttribute("name", "booked")
+                                }
+                                else {
+                                    reconta.src = "/pic/unbook.png"
+                                    reconta.setAttribute("name", "unbooked")
+                                }
+                            }
+                        })
+                }
+            })
+        })
 }
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 var teyms = ["nine", "eleven", "thirteen", "fifteen", "seventeen"]
@@ -253,14 +256,19 @@ var tem = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine
                 for (var i = 0; i < teyms.length; i++) {
                     var itsit = days[x] + teyms[i]
                     await db
-                        .collection(roms[y]).doc(tem[f]).update({
-                            [itsit]: "unbooked"
+                        .collection(roms[y]).doc(tem[f]).collection("txmes").doc(itsit).set({
+                            status: "booked",
+                        })
+                    await db
+                        .collection(roms[y]).doc(tem[f]).set({
+                            number: f,
                         })
                 }
             }
         }
     }
 }*/
+
 function antiseat() {
     document.querySelector("#seatinfo").style.display = "none"
     document.querySelector("#greyed").style.display = "none"
@@ -280,27 +288,15 @@ async function refuns(e) {
 
     // firebase login
     auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
-        await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).update({
-            [dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value]: "unbooked"
+        console.log(e.parentNode.parentNode.getAttribute("name"))
+        console.log(e.parentNode.parentNode.getAttribute("value"))
+        console.log(dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value)
+
+        await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).collection("txmes").doc(dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value).update({
+            status: "unbooked"
         }).then(async function resez() {
-            for (var f = 0; f < tem.length; f++) {
-                await db
-                    .collection(e.parentNode.parentNode.getAttribute("name")).doc(tem[f])
-                    .get()
-                    .then(function (doc) {
-                        if (doc.exists) {
-                            var reconta = document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + doc.id)
-                            if (doc.data()[dopper.options[dopper.selectedIndex].getAttribute("name") + dopper.value] === "booked") {
-                                reconta.src = "/pic/book.png"
-                                reconta.setAttribute("name", "booked")
-                            }
-                            else {
-                                reconta.src = "/pic/unbook.png"
-                                reconta.setAttribute("name", "unbooked")
-                            }
-                        }
-                    })
-            }
+            document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).src = "pic/unbook.png"
+            document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).setAttribute("unbooked")
             antiseat()
         });
     }).catch(error => console.log(error));
@@ -342,30 +338,32 @@ async function resetimer() {
         var n = d.getDay();
         var h = d.getHours();
         var m = d.getMinutes()
-        if (m === 10) {
-            console.log("reset")
-            for (var i = 0; i < roms.length; i++) {
-                for (var y = 0; y < tem.length; y++) {
-                    await db.collection(roms[i]).doc(tem[y]).get().then(function (doc) {
-                        if (doc.exists) {
-                            if (doc.data()[dal[n] + howers[h]] == null) {
-                                ;
-                            }
-                            else {
-                                db.collection(roms[i]).doc(tem[y]).update({
-                                    [dal[n] + howers[h]]: "unbooked"
+        //if (m === 10) {
+        console.log("reset")
+        for (var i = 0; i < roms.length; i++) {
+            var ides = []
+            await db
+                .collection(roms[i]).orderBy("number", "asc").get().then(async (querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        ides.push(doc.id)
+                    })
+                    for (var l = 0; l < ides.length; l++) {
+                        await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc([dal[n] + "nine"]).get().then(async function (doc) {
+                            if (doc.exists) {
+                                console.log("ok ok")
+                                await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc([dal[n] + "nine"]).update({
+                                    status: "unbooked"
                                 })
                             }
-                        }
-                    })
+                        })
 
-                }
+                    }
 
-            }
+                })
         }
-
-        else {
-            console.log("no reset")
-        }
+        /* }
+         else {
+             console.log("no reset")
+         }*/
     }, 60 * 1000);
 }
