@@ -19,21 +19,30 @@ firebase.auth().onAuthStateChanged(async function (user) {
                 querySnapshot.forEach(async function (doc) {
                     if (doc.id === "none") { }
                     else {
-                        var storage = firebase.storage();
+                        var storage = await firebase.storage();
 
                         await storageRef
-                            .child("trailers/" + doc.data().trailer)
+                            .child("poster/" + doc.data().photo)
                             .getDownloadURL()
-                            .then(function (url) {
+                            .then(async function (url) {
                                 var pocket = document.createElement("div")
                                 pocket.setAttribute("onclick", "edit(this)")
                                 pocket.classList.add("pocket")
                                 pocket.setAttribute("name", doc.data().genre)
 
-                                var trai = document.createElement("video");
-                                trai.setAttribute("name", doc.data().trailer)
+                                var trai = document.createElement("img");
+                                trai.setAttribute("name", doc.data().photo)
+                                trai.setAttribute("label", doc.data().trailer)
                                 trai.classList.add("prev");
                                 trai.src = url;
+
+                                await storageRef
+                                    .child("trailers/" + doc.data().trailer)
+                                    .getDownloadURL()
+                                    .then(function (url) {
+                                        trai.setAttribute("value", url)
+
+                                    })
 
                                 var age = document.createElement("img");
                                 age.classList.add("agg");
@@ -79,9 +88,12 @@ function edit(e) {
     document.querySelector("#form").style.display = "grid"
     document.querySelector("#helder").style.display = "none"
     document.querySelector("#seletor").style.display = "none"
-    document.querySelector("#trai").src = e.querySelector(".prev").src
-    document.querySelector("#trai").setAttribute("name", e.querySelector(".prev").getAttribute("name"))
-    document.querySelector("#trai").setAttribute("value", e.querySelector(".prev").getAttribute("name"))
+    document.querySelector("#trai").src = e.querySelector(".prev").getAttribute("value")
+    document.querySelector("#trai").setAttribute("value", e.querySelector(".prev").getAttribute("label"))
+    document.querySelector("#trai").setAttribute("name", e.querySelector(".prev").getAttribute("label"))
+    document.querySelector("#traipo").src = e.querySelector(".prev").src
+    document.querySelector("#traipo").setAttribute("name", e.querySelector(".prev").getAttribute("name"))
+    document.querySelector("#traipo").setAttribute("value", e.querySelector(".prev").getAttribute("name"))
     document.querySelector("#title").querySelector(".pbawx").innerText = e.querySelector(".litle").innerText
     document.querySelector("#length").querySelector(".bawx").value = e.querySelector(".time").innerText
     document.getElementById('gen').value = e.getAttribute("name")
@@ -125,22 +137,41 @@ chooser.addEventListener("change", function (e) {
     output.onload = function () { // free memory
     }
 });
+var chooserpo = document.querySelector("#pseupo")
+chooserpo.addEventListener("change", function (e) {
+    // Get file
+    filepo = e.target.files[0];
+
+    outputpo = document.getElementById("traipo");
+    outputpo.setAttribute("value", filepo.name)
+    var tempurlpo = URL.createObjectURL(event.target.files[0]);
+    outputpo.src = tempurlpo
+    tempimagepo = tempurlpo
+    outputpo.onload = function () { // free memory
+    }
+});
 function chose() {
     chooser.click()
+}
+function chosepo() {
+    chooserpo.click()
 }
 async function delet() {
     document.querySelector("#delete").innerText = "Deleting..."
     await storageRef
         .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function () {
-            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText).delete().then(function () {
-                var toph = document.querySelectorAll(".litle")
-                for (i = 0; i < toph.length; i++) {
-                    if (toph[i].innerText === document.querySelector("#title").querySelector(".pbawx").innerText)
-                        toph[i].parentNode.style.display = "none"
-                }
-                document.querySelector("#update").innerText = "UPDATE"
-                back();
-            })
+            await storageRef
+                .child("poster/" + document.querySelector("#traipo").getAttribute("name")).delete().then(async function () {
+                    await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText).delete().then(function () {
+                        var toph = document.querySelectorAll(".litle")
+                        for (i = 0; i < toph.length; i++) {
+                            if (toph[i].innerText === document.querySelector("#title").querySelector(".pbawx").innerText)
+                                toph[i].parentNode.style.display = "none"
+                        }
+                        document.querySelector("#update").innerText = "UPDATE"
+                        back();
+                    })
+                })
         })
 }
 async function updat() {
@@ -192,39 +223,92 @@ async function updat() {
     }
     document.querySelector("#update").innerText = "Updating..."
     if (document.querySelector("#trai").getAttribute("name") === document.querySelector("#trai").getAttribute("value")) {
-        console.log("pair")
-        await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
-            .update({
-                length: document.querySelector("#length").querySelector(".bawx").value,
-                description: document.querySelector("#descrip").querySelector(".bawx").value,
-                additional: document.querySelector("#addit").querySelector(".bawx").value,
-                age: document.getElementsByName("active")[0].innerText,
-                genre: document.getElementById("gen").value,
-            }).then(function () {
-                location.reload()
-            })
+        if (document.querySelector("#traipo").getAttribute("name") === document.querySelector("#traipo").getAttribute("value")) {
+            console.log("pair")
+            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+                .update({
+                    length: document.querySelector("#length").querySelector(".bawx").value,
+                    description: document.querySelector("#descrip").querySelector(".bawx").value,
+                    additional: document.querySelector("#addit").querySelector(".bawx").value,
+                    age: document.getElementsByName("active")[0].innerText,
+                    genre: document.getElementById("gen").value,
+                }).then(function () {
+                    location.reload()
+                })
+        }
+        else {
+            console.log("change")
+            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+                .update({
+                    length: document.querySelector("#length").querySelector(".bawx").value,
+                    description: document.querySelector("#descrip").querySelector(".bawx").value,
+                    additional: document.querySelector("#addit").querySelector(".bawx").value,
+                    age: document.getElementsByName("active")[0].innerText,
+                    genre: document.getElementById("gen").value,
+                    photo: document.querySelector("#traipo").getAttribute("value")
+                }).then(async function () {
+                    await storageRef
+                        .child("poster/" + document.querySelector("#traipo").getAttribute("name")).delete().then(async function (docRef) {
+                            var storageRefpo = firebase.storage().ref("poster/" + filepo.name);
+                            // Upload file
+                            var taskpo = await storageRefpo.put(filepo);;
+
+                        }).then(function () {
+                            location.reload()
+                        })
+                })
+        }
     }
     else {
-        console.log("change")
-        await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
-            .update({
-                length: document.querySelector("#length").querySelector(".bawx").value,
-                description: document.querySelector("#descrip").querySelector(".bawx").value,
-                additional: document.querySelector("#addit").querySelector(".bawx").value,
-                age: document.getElementsByName("active")[0].innerText,
-                genre: document.getElementById("gen").value,
-                trailer: document.querySelector("#trai").getAttribute("value")
-            }).then(async function () {
-                await storageRef
-                    .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function (docRef) {
-                        var storageRef = firebase.storage().ref("trailers/" + file.name);
-                        // Upload file
-                        var task = await storageRef.put(file);;
+        if (document.querySelector("#traipo").getAttribute("name") === document.querySelector("#traipo").getAttribute("value")) {
+            console.log("change")
+            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+                .update({
+                    length: document.querySelector("#length").querySelector(".bawx").value,
+                    description: document.querySelector("#descrip").querySelector(".bawx").value,
+                    additional: document.querySelector("#addit").querySelector(".bawx").value,
+                    age: document.getElementsByName("active")[0].innerText,
+                    genre: document.getElementById("gen").value,
+                    trailer: document.querySelector("#trai").getAttribute("value")
+                }).then(async function () {
+                    await storageRef
+                        .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function (docRef) {
+                            var storageRef = firebase.storage().ref("trailers/" + file.name);
+                            // Upload file
+                            var task = await storageRef.put(file);;
 
-                    }).then(function () {
-                        location.reload()
-                    })
-            })
+                        }).then(function () {
+                            location.reload()
+                        })
+                })
+        }
+        else {
+            await db.collection("movies").doc(document.querySelector("#title").querySelector(".pbawx").innerText)
+                .update({
+                    length: document.querySelector("#length").querySelector(".bawx").value,
+                    description: document.querySelector("#descrip").querySelector(".bawx").value,
+                    additional: document.querySelector("#addit").querySelector(".bawx").value,
+                    age: document.getElementsByName("active")[0].innerText,
+                    genre: document.getElementById("gen").value,
+                    trailer: document.querySelector("#trai").getAttribute("value"),
+                    photo: document.querySelector("#traipo").getAttribute("value")
+                }).then(async function () {
+                    await storageRef
+                        .child("trailers/" + document.querySelector("#trai").getAttribute("name")).delete().then(async function (docRef) {
+                            await storageRef
+                                .child("poster/" + document.querySelector("#traipo").getAttribute("name")).delete().then(async function (docRef) {
+                                    var storageRef = firebase.storage().ref("trailers/" + file.name);
+                                    // Upload file
+                                    var task = await storageRef.put(file);
+                                    var storageRefpo = firebase.storage().ref("poster/" + filepo.name);
+                                    // Upload file
+                                    var taskpo = await storageRefpo.put(filepo);
+                                })
+                        })
+                }).then(function () {
+                    location.reload()
+                })
+        }
     }
 }
 function file(e) {

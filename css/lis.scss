@@ -110,9 +110,9 @@ height:21vh;
         grid-template-columns:3fr 7fr 3fr;
         grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
         grid-template-areas:
-        ". vid ."
+        "vid . vidpo"
         ". . ."
-        ". sele ."
+        "sele . selepo"
         ". . ."
         "tbox tbox tbox"
         ". . ."
@@ -136,20 +136,34 @@ height:21vh;
         grid-template-rows:1fr;
         grid-template-areas:"labe bawx";
         margin-bottom:1vh;
-        margin-left:-18vw;
+        margin-left:-10vw;
     }
     #trai {
         grid-area:vid;
         width:25vw;
+      height:15vw;;
+    }
+    #traipo {
+        grid-area:vidpo;
+        width:25vw;
       height:15vw;
-        margin-left:7.8vw;
+      background-color: #0A0903;
     }
     #sele {
         grid-area:sele;
         background-color: #0A0903;
         color:white;
         width:25vw;
-        margin-left:7.8vw;
+        text-align:center;
+        font-size:1.5vw;
+        padding-top:1vh;
+        padding-bottom:1vh;
+    }
+    #selepo {
+        grid-area:selepo;
+        background-color: #0A0903;
+        color:white;
+        width:25vw;
         text-align:center;
         font-size:1.5vw;
         padding-top:1vh;

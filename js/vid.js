@@ -34,8 +34,25 @@ chooser.addEventListener("change", function (e) {
     output.onload = function () { // free memory
     }
 });
+var chooserpo = document.querySelector("#pseupo")
+chooserpo.addEventListener("change", function (e) {
+    // Get file
+    filepo = e.target.files[0];
+
+    console.log(filepo.name);
+
+    outputpo = document.getElementById("traipo");
+    var tempurlpo = URL.createObjectURL(event.target.files[0]);
+    outputpo.src = tempurlpo
+    tempimagepo = tempurlpo
+    outputpo.onload = function () { // free memory
+    }
+});
 function chose() {
     chooser.click()
+}
+function chosepo() {
+    chooserpo.click()
 }
 async function plu() {
     if (document.querySelector("#title").querySelector(".bawx").value === "") {
@@ -86,6 +103,14 @@ async function plu() {
                                 setTimeout(function () { document.querySelector("#add").style.backgroundColor = " #0A0903"; document.querySelector("#add").innerText = "ADD" }, 1500)
                                 return
                             }
+                            else {
+                                if (document.querySelector("#pseupo").value === "") {
+                                    document.querySelector("#add").innerText = "NO PHOTO"
+                                    document.querySelector("#add").style.backgroundColor = "red"
+                                    setTimeout(function () { document.querySelector("#add").style.backgroundColor = " #0A0903"; document.querySelector("#add").innerText = "ADD" }, 1500)
+                                    return
+                                }
+                            }
                         }
                     }
                 }
@@ -102,11 +127,14 @@ async function plu() {
             additional: document.querySelector("#addit").querySelector(".bawx").value,
             age: document.getElementsByName("active")[0].innerText,
             genre: document.getElementById("gen").value,
-            trailer: file.name
+            trailer: file.name,
+            photo: filepo.name
         }).then(async function (docRef) {
             var storageRef = firebase.storage().ref("trailers/" + file.name);
+            var storageRefpo = firebase.storage().ref("poster/" + filepo.name);
             // Upload file
-            var task = await storageRef.put(file);;
+            var task = await storageRef.put(file);
+            var taskpo = await storageRefpo.put(filepo);;
 
         }).then(function () {
             location.reload()

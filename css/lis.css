@@ -144,7 +144,7 @@ body {
       grid-template-columns: 3fr 7fr 3fr;
   -ms-grid-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
       grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
-      grid-template-areas: ". vid ." ". . ." ". sele ." ". . ." "tbox tbox tbox" ". . ." "lbox lbox genre" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "delete . update";
+      grid-template-areas: "vid . vidpo" ". . ." "sele . selepo" ". . ." "tbox tbox tbox" ". . ." "lbox lbox genre" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "delete . update";
 }
 
 .lbaw {
@@ -163,26 +163,46 @@ body {
       grid-template-rows: 1fr;
       grid-template-areas: "labe bawx";
   margin-bottom: 1vh;
-  margin-left: -18vw;
+  margin-left: -10vw;
 }
 
 #trai {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: vid;
   width: 25vw;
   height: 15vw;
-  margin-left: 7.8vw;
+}
+
+#traipo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: vidpo;
+  width: 25vw;
+  height: 15vw;
+  background-color: #0A0903;
 }
 
 #sele {
   -ms-grid-row: 3;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   grid-area: sele;
   background-color: #0A0903;
   color: white;
   width: 25vw;
-  margin-left: 7.8vw;
+  text-align: center;
+  font-size: 1.5vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#selepo {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+  grid-area: selepo;
+  background-color: #0A0903;
+  color: white;
+  width: 25vw;
   text-align: center;
   font-size: 1.5vw;
   padding-top: 1vh;
