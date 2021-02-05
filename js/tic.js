@@ -97,7 +97,6 @@ for (var i = 0; i < timmy.length; i++) {
 
             for (var i = 0; i < teyms.length; i++) {
                 var ti = document.querySelector("#times")
-
                 await db.collection(ti.querySelector("#ident").innerText).doc(days[x]).get().then(async function (doc) {
                     if (doc.exists) {
                         ti.querySelector("#" + days[x]).querySelector("." + teyms[i]).querySelector(".filmselec").value = doc.data()[teyms[i]]
@@ -114,7 +113,6 @@ async function movvie(e) {
     dae = e.options[e.selectedIndex].getAttribute("name")
     tillee = dae + test
     e.setAttribute("name", dae)
-    console.log(e.parentNode.id)
     await db
         .collection(e.parentNode.id).orderBy("number", "asc").get().then(async (querySnapshot) => {
             querySnapshot.forEach(async (doc) => {
@@ -123,8 +121,6 @@ async function movvie(e) {
                     await db
                         .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
                             if (doc.exists) {
-                                console.log(doc.data())
-
                                 if (doc.data().status === "booked") {
                                     reconta.src = "/pic/book.png"
                                     reconta.setAttribute("name", "booked")
@@ -320,15 +316,23 @@ async function unirefun(e) {
 
     // firebase login
     auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
-        for (var i = 0; i < tem.length; i++) {
-            e.style.backgroundColor = "#ce7272"
-            e.innerText = "updating:" + tem[i]
-            await db.collection(roomie).doc(tem[i]).update({
-                [dast.options[dast.selectedIndex].getAttribute("name") + dast.value]: "unbooked"
-            })
-        } location.reload()
-    }).catch(error => e.innerText = "Wrong password",
-        setTimeout(function () { e.innerText = " CONFIRM" }, 1500));
+        await db
+            .collection(roomie).orderBy("number", "asc").get().then(async (querySnapshot) => {
+                querySnapshot.forEach(async (doc) => {
+                    if (doc.exists) {
+                        e.style.backgroundColor = "#ce7272"
+                        e.innerText = "updating:" + doc.id
+                        await db
+                            .collection(roomie).doc(doc.id).collection("txmes").doc(dast.options[dast.selectedIndex].getAttribute("name") + dast.value).update({
+                                status: "unbooked"
+                            })
+                        document.querySelector("#" + roomie).querySelector(".megaseat").querySelector("#" + doc.id).src = "pic/unbook.png"
+                    }
+                })
+                antiseat()
+            }).catch(error => e.innerText = "Wrong password",
+                setTimeout(function () { e.innerText = " CONFIRM" }, 1500));
+    })
 }
 
 
