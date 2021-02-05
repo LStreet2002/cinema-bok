@@ -7,7 +7,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
         roomtimes()
         for (var i = 0; i < roms.length; i++) {
             await db
-                .collection(roms[i]).doc("Monday").get().then(function (doc) {
+                .collection(roms[i]).doc("Monday").get().then(async function (doc) {
                     document.querySelector("#" + roms[i]).querySelector(".screen").innerText = doc.data().nine
                 })
             await db
@@ -15,27 +15,25 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     querySnapshot.forEach(async (doc) => {
                         var conta = document.createElement("img")
                         conta.id = doc.id
-                        if (doc.exists) {
-                            await db
-                                .collection(roms[i]).doc(doc.id).collection("txmes").doc("Mondaynine").get().then((doc) => {
-                                    if (doc.exists) {
-                                        conta.classList.add("conta")
-                                        conta.setAttribute("onclick", "seatinfo(this)")
-                                        if (doc.data().status === "booked") {
-                                            conta.src = "/pic/book.png"
-                                            conta.setAttribute("name", "booked")
-                                        }
-                                        else {
-                                            conta.src = "/pic/unbook.png"
-                                            conta.setAttribute("name", "unbooked")
-                                        }
-                                        document.querySelector("#" + roms[i - 1]).querySelector(".megaseat").appendChild(conta)
-                                    }
-                                })
-                        }
+                        await db
+                            .collection(roms[i]).doc(doc.id).collection("txmes").doc("Mondaynine").get().then(async (doc) => {
+                                conta.classList.add("conta", "hovv")
+                                conta.setAttribute("onclick", "seatinfo(this)")
+                                if (doc.data().status === "booked") {
+                                    conta.src = "/pic/book.png"
+                                    conta.setAttribute("name", "booked")
+                                }
+                                else {
+                                    conta.src = "/pic/unbook.png"
+                                    conta.setAttribute("name", "unbooked")
+                                }
+
+                                document.querySelector("#" + roms[i - 1]).querySelector(".megaseat").appendChild(conta)
+                            })
                     })
                 })
         }
+
         await db
             .collection("movies")
             .get()
@@ -51,6 +49,26 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     })
                 }
             })
+        for (var q = 0; q < roms.length; q++) {
+            var oti = document.createElement("div")
+            oti.id = "oti"
+            var plu = document.createElement("img")
+            plu.id = "plux"
+            plu.src = "pic/plus.png"
+            plu.setAttribute("onclick", "plus")
+            var subt = document.createElement("img")
+            subt.id = "subt"
+            subt.src = "pic/minus.png"
+            subt.setAttribute("onclick", "sube(this)")
+            oti.appendChild(plu)
+            oti.appendChild(subt)
+            console.log(q)
+            var et = document.querySelector("#" + roms[q]).querySelector(".megaseat").querySelectorAll(".conta")
+            console.log(et[et.length - 1])
+            et[et.length - 1].parentNode.insertBefore(oti, et[et.length - 1].nextSibling);
+            oti.after()
+
+        }
         resetimer()
     }
     else {
@@ -116,8 +134,14 @@ async function movvie(e) {
     await db
         .collection(e.parentNode.id).orderBy("number", "asc").get().then(async (querySnapshot) => {
             querySnapshot.forEach(async (doc) => {
-                var reconta = e.parentNode.querySelector("#" + doc.id)
+                var currents = e.parentNode.querySelector(".megaseat").querySelectorAll(".conta")
+                for (var i = 0; i < currents.length; i++) {
+                    currents[i].remove()
+                }
+                var reconta = document.createElement("img")
+                reconta.id = doc.id
                 if (doc.exists) {
+                    reconta.classList.add("conta", "hovv")
                     await db
                         .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
                             if (doc.exists) {
@@ -129,6 +153,7 @@ async function movvie(e) {
                                     reconta.src = "/pic/unbook.png"
                                     reconta.setAttribute("name", "unbooked")
                                 }
+                                e.parentNode.querySelector(".megaseat").appendChild(reconta)
                             }
                         })
                 }
@@ -369,4 +394,21 @@ async function resetimer() {
             console.log("no reset")
         }
     }, 60 * 1000);
+}
+function adder() {
+    var oti = document.createElement("div")
+    var plu = document.createElement("img")
+    plu.id = "plux"
+    plu.src = "pic/plus.png"
+    plu.setAttribute("onclick", "plus")
+    var subt = document.createElement("img")
+    subt.id = "subt"
+    subt.src = "pic/minus.png"
+    subt.setAttribute("onclick", "sube(this)")
+    oti.appendChild(plu)
+    oti.appendChild(subt)
+    console.log(i)
+    var et = document.querySelector("#" + roms[i]).querySelector(".megaseat")
+    console.log(et)
+    oti.after(et[et.length - 1])
 }
