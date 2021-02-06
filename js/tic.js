@@ -50,23 +50,12 @@ firebase.auth().onAuthStateChanged(async function (user) {
                 }
             })
         for (var q = 0; q < roms.length; q++) {
-            var oti = document.createElement("div")
-            oti.id = "oti"
             var plu = document.createElement("img")
             plu.id = "plux"
             plu.src = "pic/plus.png"
             plu.setAttribute("onclick", "plus")
-            var subt = document.createElement("img")
-            subt.id = "subt"
-            subt.src = "pic/minus.png"
-            subt.setAttribute("onclick", "sube(this)")
-            oti.appendChild(plu)
-            oti.appendChild(subt)
-            console.log(q)
             var et = document.querySelector("#" + roms[q]).querySelector(".megaseat").querySelectorAll(".conta")
-            console.log(et[et.length - 1])
-            et[et.length - 1].parentNode.insertBefore(oti, et[et.length - 1].nextSibling);
-            oti.after()
+            et[et.length - 1].parentNode.insertBefore(plu, et[et.length - 1].nextSibling);
 
         }
         resetimer()
@@ -126,39 +115,50 @@ for (var i = 0; i < timmy.length; i++) {
     });
 }
 
-async function movvie(e) {
+function movvie(e) {
     test = String(e.value)
     dae = e.options[e.selectedIndex].getAttribute("name")
     tillee = dae + test
     e.setAttribute("name", dae)
-    await db
-        .collection(e.parentNode.id).orderBy("number", "asc").get().then(async (querySnapshot) => {
-            querySnapshot.forEach(async (doc) => {
-                var currents = e.parentNode.querySelector(".megaseat").querySelectorAll(".conta")
-                for (var i = 0; i < currents.length; i++) {
-                    currents[i].remove()
-                }
-                var reconta = document.createElement("img")
-                reconta.id = doc.id
-                if (doc.exists) {
-                    reconta.classList.add("conta", "hovv")
-                    await db
-                        .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
-                            if (doc.exists) {
-                                if (doc.data().status === "booked") {
-                                    reconta.src = "/pic/book.png"
-                                    reconta.setAttribute("name", "booked")
+    function c() {
+        db
+            .collection(e.parentNode.id).orderBy("number", "asc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    var currents = e.parentNode.querySelector(".megaseat").querySelectorAll(".conta")
+                    for (var i = 0; i < currents.length; i++) {
+                        currents[i].remove()
+                    }
+                    var reconta = document.createElement("img")
+                    reconta.id = doc.id
+                    if (doc.exists) {
+                        reconta.classList.add("conta", "hovv")
+                        reconta.setAttribute("onclick", "seatinfo(this)")
+                        db
+                            .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
+                                if (doc.exists) {
+                                    if (doc.data().status === "booked") {
+                                        reconta.src = "/pic/book.png"
+                                        reconta.setAttribute("name", "booked")
+                                    }
+                                    else {
+                                        reconta.src = "/pic/unbook.png"
+                                        reconta.setAttribute("name", "unbooked")
+                                    }
+                                    e.parentNode.querySelector(".megaseat").appendChild(reconta)
+                                    e.parentNode.querySelector(".megaseat").querySelector("#plux").remove()
+                                    var plu = document.createElement("img")
+                                    plu.id = "plux"
+                                    plu.src = "pic/plus.png"
+                                    plu.setAttribute("onclick", "plus")
+                                    var et = e.parentNode.querySelector(".megaseat").querySelectorAll(".conta")
+                                    e.parentNode.querySelector(".megaseat").appendChild(plu)
                                 }
-                                else {
-                                    reconta.src = "/pic/unbook.png"
-                                    reconta.setAttribute("name", "unbooked")
-                                }
-                                e.parentNode.querySelector(".megaseat").appendChild(reconta)
-                            }
-                        })
-                }
+                            })
+                    }
+                })
             })
-        })
+    }
+    c()
 }
 var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 var teyms = ["nine", "eleven", "thirteen", "fifteen", "seventeen"]

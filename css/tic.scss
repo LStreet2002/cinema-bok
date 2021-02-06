@@ -281,24 +281,14 @@ border:none;
 .yeah {
 
 }
-#oti {
-    display:inline-grid;
-    grid-template-rows:1fr 1fr;
-    grid-template-columns:1fr;
-    grid-template-areas:"add"
-    "sub";
-    height:13vw;
-    width:13vw;
-}
+
 #plux {
-    grid-area:add;
-    height:6.5vw;
+    margin-bottom:1vw;
+    height:10vw;
 }
-#subt {
-    grid-area:sub;
-    height:6.5vw;
-}
+
 .conta {
     height:13vw;
     width:13vw;
+    display:inline-grid;
 }

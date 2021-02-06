@@ -361,34 +361,15 @@ textarea:focus, input:focus, button:focus, select:focus {
   border: none;
 }
 
-#oti {
-  display: -ms-inline-grid;
-  display: inline-grid;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-      grid-template-areas: "add" "sub";
-  height: 13vw;
-  width: 13vw;
-}
-
 #plux {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: add;
-  height: 6.5vw;
-}
-
-#subt {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: sub;
-  height: 6.5vw;
+  margin-bottom: 1vw;
+  height: 10vw;
 }
 
 .conta {
   height: 13vw;
   width: 13vw;
+  display: -ms-inline-grid;
+  display: inline-grid;
 }
 /*# sourceMappingURL=tic.css.map */
