@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
                     querySnapshot.forEach(async (doc) => {
                         var conta = document.createElement("img")
                         conta.id = doc.id
+                        conta.setAttribute("value", doc.data().number)
                         await db
                             .collection(roms[i]).doc(doc.id).collection("txmes").doc("Mondaynine").get().then(async (doc) => {
                                 conta.classList.add("conta", "hovv")
@@ -53,7 +54,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
             var plu = document.createElement("img")
             plu.id = "plux"
             plu.src = "pic/plus.png"
-            plu.setAttribute("onclick", "plus")
+            plu.classList.add("hovv")
+            plu.setAttribute("onclick", "plus(this)")
             var et = document.querySelector("#" + roms[q]).querySelector(".megaseat").querySelectorAll(".conta")
             et[et.length - 1].parentNode.insertBefore(plu, et[et.length - 1].nextSibling);
 
@@ -130,6 +132,7 @@ function movvie(e) {
                     }
                     var reconta = document.createElement("img")
                     reconta.id = doc.id
+                    reconta.setAttribute("value", doc.data().number)
                     if (doc.exists) {
                         reconta.classList.add("conta", "hovv")
                         reconta.setAttribute("onclick", "seatinfo(this)")
@@ -149,7 +152,8 @@ function movvie(e) {
                                     var plu = document.createElement("img")
                                     plu.id = "plux"
                                     plu.src = "pic/plus.png"
-                                    plu.setAttribute("onclick", "plus")
+                                    plu.classList.add("hovv")
+                                    plu.setAttribute("onclick", "plus(this)")
                                     var et = e.parentNode.querySelector(".megaseat").querySelectorAll(".conta")
                                     e.parentNode.querySelector(".megaseat").appendChild(plu)
                                 }
@@ -395,20 +399,44 @@ async function resetimer() {
         }
     }, 60 * 1000);
 }
-function adder() {
-    var oti = document.createElement("div")
+
+async function plus(e) {
+    var pse = e.parentNode
+    var control = pse.querySelectorAll(".conta")
+    var newo = control[control.length - 1]
+    pse.querySelector("#plux").remove()
+    var pluconta = document.createElement("img")
+    pluconta.classList.add("conta", "hovv")
+    pluconta.setAttribute("value", control.length)
+    pluconta.src = "pic/unbook.png"
+
+    await db.collection(pse.parentNode.id).doc().set({
+        number: control.length
+    }).then(async function () {
+        for (var x = 0; x < days.length; x++) {
+            for (var i = 0; i < teyms.length; i++) {
+                var itsit = days[x] + teyms[i]
+                await db.collection(pse.parentNode.id).where("number", "==", control.length).get().then((querySnapshot) => {
+                    querySnapshot.forEach(async (doc) => {
+                        if (doc.exists) {
+                            pluconta.id = doc.id
+                            await db.collection(pse.parentNode.id).doc(doc.id).collection("txmes").doc(itsit).set({
+                                status: "unbooked"
+                            })
+                        }
+                        else {
+                            console.log("it ain't there")
+                        }
+                    })
+                })
+            }
+        }
+    })
+    pse.appendChild(pluconta)
     var plu = document.createElement("img")
     plu.id = "plux"
     plu.src = "pic/plus.png"
-    plu.setAttribute("onclick", "plus")
-    var subt = document.createElement("img")
-    subt.id = "subt"
-    subt.src = "pic/minus.png"
-    subt.setAttribute("onclick", "sube(this)")
-    oti.appendChild(plu)
-    oti.appendChild(subt)
-    console.log(i)
-    var et = document.querySelector("#" + roms[i]).querySelector(".megaseat")
-    console.log(et)
-    oti.after(et[et.length - 1])
+    plu.classList.add("hovv")
+    plu.setAttribute("onclick", "plus(this)")
+    pse.appendChild(plu)
 }
