@@ -58,6 +58,7 @@ body{
 }
 .megaseat {
     grid-area:seat;
+    margin-left:inherit;
 }
 .refund {
     grid-area:refund;
@@ -232,12 +233,43 @@ textarea:focus, input:focus,button:focus,select:focus {
     color:white;
     background-color: #F18282;
 }
+#confirm2 {
+    display:none;
+    display:none;
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "passowe refun"
+}
+#delaes {
+    grid-area:refun;
+    border:none;
+    color:white;
+    background-color: #F18282;
+}
+#seatdeleat {
+    display:block;
+    margin-top:3vh;
+    width:33vw;
+    margin-left:auto;
+    margin-right:auto;
+    height:4vw;
+    border:none;
+    color:white;
+    background-color: #F18282;
+}
 #seatio {
     margin-left:auto;
     margin-right:auto;
     text-align: center;
 }
 #passowrd {
+    grid-area:passowe;
+    border:none;
+    box-shadow: rgba(51,51,51,0.2) 0px 1px;
+    background-color:rgb(239, 239, 239);
+}
+#passowrd2 {
     grid-area:passowe;
     border:none;
     box-shadow: rgba(51,51,51,0.2) 0px 1px;

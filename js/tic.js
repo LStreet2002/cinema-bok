@@ -264,8 +264,9 @@ async function seatinfo(e) {
     document.querySelector("#seatinfo").setAttribute("value", e.id)
     document.querySelector("#seatinfo").setAttribute("name", e.parentNode.parentNode.id)
     document.querySelector("#greyed").style.display = "block"
-    document.querySelector("#seatio").innerText = "I display the information for Room " + e.parentNode.parentNode.id + " Seat " + e.id + " at " + e.parentNode.parentNode.querySelector(".yeah").options[e.parentNode.parentNode.querySelector(".yeah").selectedIndex].innerText
+    document.querySelector("#seatio").innerText = "I display the information for Room " + e.parentNode.parentNode.id + " Seat " + e.getAttribute("value") + " at " + e.parentNode.parentNode.querySelector(".yeah").options[e.parentNode.parentNode.querySelector(".yeah").selectedIndex].innerText
     document.querySelector("#confirm").style.display = "none"
+    document.querySelector("#confirm2").style.display = "none"
     if (e.getAttribute("name") === "booked") {
         document.querySelector("#seatinfo").querySelector("#unbok").style.display = "block"
     }
@@ -301,6 +302,11 @@ function antiseat() {
 }
 function credent() {
     document.querySelector("#confirm").style.display = "grid"
+    document.querySelector("#confirm2").style.display = "none"
+}
+function delaes() {
+    document.querySelector("#confirm").style.display = "none"
+    document.querySelector("#confirm2").style.display = "grid"
 }
 async function refuns(e) {
     const logins = document.querySelector("#confirm");
@@ -360,7 +366,7 @@ async function unirefun(e) {
                 })
                 antiseat()
             }).catch(error => e.innerText = "Wrong password",
-                setTimeout(function () { e.innerText = " CONFIRM" }, 1500));
+                setTimeout(function () { e.innerText = " REFUND" }, 1500));
     })
 }
 
@@ -419,7 +425,7 @@ async function plus(e) {
                 await db.collection(pse.parentNode.id).where("number", "==", control.length).get().then((querySnapshot) => {
                     querySnapshot.forEach(async (doc) => {
                         if (doc.exists) {
-                            pluconta.id = doc.id
+                            pluconta.setAttribute("id", doc.id)
                             await db.collection(pse.parentNode.id).doc(doc.id).collection("txmes").doc(itsit).set({
                                 status: "unbooked"
                             })
@@ -439,4 +445,35 @@ async function plus(e) {
     plu.classList.add("hovv")
     plu.setAttribute("onclick", "plus(this)")
     pse.appendChild(plu)
+}
+async function delaet(e) {
+    const logins = document.querySelector("#confirm2");
+    const email = "authsender@gmail.com";
+    const password = logins.querySelector("#passowrd2").value;
+
+
+    // firebase login
+    auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
+        for (var x = 0; x < days.length; x++) {
+            for (var i = 0; i < teyms.length; i++) {
+                var itsit = days[x] + teyms[i]
+                await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).collection("txmes").doc(itsit).get().then(async (doc) => {
+                    if (doc.data().status === "booked") {
+                        e.innerText = "Please refund all first",
+                            setTimeout(function () { e.innerText = "DELETE" }, 1500)
+                        return;
+                    }
+                    return
+                })
+                return
+            }
+            return
+        }
+        await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).delete()
+            .then(async function removi() {
+                document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).remove()
+                antiseat()
+            })
+    }).catch(error => e.innerText = "Wrong password",
+        setTimeout(function () { e.innerText = "DELETE" }, 1500));
 }

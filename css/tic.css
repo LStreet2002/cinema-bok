@@ -72,6 +72,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: seat;
+  margin-left: inherit;
 }
 
 .refund {
@@ -303,6 +304,37 @@ textarea:focus, input:focus, button:focus, select:focus {
   background-color: #F18282;
 }
 
+#confirm2 {
+  display: none;
+  display: none;
+  -ms-grid-columns: 5fr 1fr;
+      grid-template-columns: 5fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "passowe refun";
+}
+
+#delaes {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: refun;
+  border: none;
+  color: white;
+  background-color: #F18282;
+}
+
+#seatdeleat {
+  display: block;
+  margin-top: 3vh;
+  width: 33vw;
+  margin-left: auto;
+  margin-right: auto;
+  height: 4vw;
+  border: none;
+  color: white;
+  background-color: #F18282;
+}
+
 #seatio {
   margin-left: auto;
   margin-right: auto;
@@ -310,6 +342,16 @@ textarea:focus, input:focus, button:focus, select:focus {
 }
 
 #passowrd {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: passowe;
+  border: none;
+  -webkit-box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
+          box-shadow: rgba(51, 51, 51, 0.2) 0px 1px;
+  background-color: #efefef;
+}
+
+#passowrd2 {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: passowe;
