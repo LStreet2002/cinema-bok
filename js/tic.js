@@ -410,11 +410,12 @@ async function plus(e) {
     var pse = e.parentNode
     var control = pse.querySelectorAll(".conta")
     var newo = control[control.length - 1]
-    pse.querySelector("#plux").remove()
+    pse.querySelector("#plux").src = "pic/lodd.gif"
     var pluconta = document.createElement("img")
     pluconta.classList.add("conta", "hovv")
     pluconta.setAttribute("value", control.length)
     pluconta.src = "pic/unbook.png"
+    pluconta.setAttribute("onclick", "seatinfo(this)")
 
     await db.collection(pse.parentNode.id).doc().set({
         number: control.length
@@ -438,6 +439,7 @@ async function plus(e) {
             }
         }
     })
+    pse.querySelector("#plux").remove()
     pse.appendChild(pluconta)
     var plu = document.createElement("img")
     plu.id = "plux"
@@ -454,26 +456,27 @@ async function delaet(e) {
 
     // firebase login
     auth.signInWithEmailAndPassword(email, password).then(async (cred) => {
+        e.innerText = "Deleting..."
         for (var x = 0; x < days.length; x++) {
             for (var i = 0; i < teyms.length; i++) {
                 var itsit = days[x] + teyms[i]
                 await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).collection("txmes").doc(itsit).get().then(async (doc) => {
                     if (doc.data().status === "booked") {
-                        e.innerText = "Please refund all first",
-                            setTimeout(function () { e.innerText = "DELETE" }, 1500)
+                        e.innerText = "Please refund all first"
+                        //setTimeout(function () { e.innerText = "DELETE" }, 1500)
                         return;
                     }
-                    return
+
                 })
-                return
             }
-            return
         }
         await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).delete()
             .then(async function removi() {
+                // e.innerText = "DELETE"
                 document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).remove()
                 antiseat()
             })
+
     }).catch(error => e.innerText = "Wrong password",
         setTimeout(function () { e.innerText = "DELETE" }, 1500));
 }
