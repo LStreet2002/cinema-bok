@@ -472,7 +472,7 @@ async function delaet(e) {
         }
         await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).delete()
             .then(async function removi() {
-                // e.innerText = "DELETE"
+                e.innerText = "DELETE"
                 document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).remove()
                 antiseat()
             })
