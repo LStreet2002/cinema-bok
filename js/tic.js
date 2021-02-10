@@ -469,14 +469,21 @@ async function delaet(e) {
 
                 })
             }
+        } for (var f = 0; f < days.length; f++) {
+            for (var q = 0; q < teyms.length; q++) {
+                var itsey = days[f] + teyms[q]
+                await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).collection("txmes").doc(itsey).delete()
+            }
         }
         await db.collection(e.parentNode.parentNode.getAttribute("name")).doc(e.parentNode.parentNode.getAttribute("value")).delete()
+
             .then(async function removi() {
                 e.innerText = "DELETE"
                 document.querySelector("#" + e.parentNode.parentNode.getAttribute("name")).querySelector("#" + e.parentNode.parentNode.getAttribute("value")).remove()
                 antiseat()
             })
 
-    }).catch(error => e.innerText = "Wrong password",
-        setTimeout(function () { e.innerText = "DELETE" }, 1500));
+    })
+        .catch(error => e.innerText = "Wrong password",
+            setTimeout(function () { e.innerText = "DELETE" }, 1500));
 }
