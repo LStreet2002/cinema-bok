@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 var minus = document.createElement("div")
                 minus.innerText = "Remove"
                 minus.setAttribute("onclick", "removet(this)")
-                minus.classList.add("minus")
+                minus.classList.add("minus", "hovv")
                 divop.appendChild(inpu)
                 divop.appendChild(minus)
                 var opso = document.createElement("option")
@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 opso.setAttribute("value", genks[i])
                 opso.innerText = genks[[i]]
                 document.querySelector("#gen").appendChild(opso)
-                document.querySelector("#genrebox").appendChild(divop)
+                document.querySelector("#genapp").appendChild(divop)
             }
         }
     }).then(function () {
@@ -52,6 +52,7 @@ function plus(e) {
     plu.id = "plux"
     plu.src = "pic/plus.png"
     plu.classList.add("hovv")
+    plu.style.display = "block"
     plu.setAttribute("onclick", "plus(this)")
     var inpu = document.createElement("input")
     inpu.value = ""
@@ -61,15 +62,16 @@ function plus(e) {
     var minus = document.createElement("div")
     minus.innerText = "Remove"
     minus.setAttribute("onclick", "removet(this)")
-    minus.classList.add("minus")
+    minus.classList.add("minus", "hovv")
     divop.appendChild(inpu)
     divop.appendChild(minus)
-    document.querySelector("#genrebox").appendChild(divop)
+    document.querySelector("#genapp").appendChild(divop)
     document.querySelector("#genrebox").appendChild(plu)
     var add = document.createElement("div")
     add.classList.add("hovv")
     add.innerText = "UPDATE"
     add.id = "addex"
+    add.style.display = "block"
     add.setAttribute("onclick", "genupt()")
     document.querySelector("#genrebox").appendChild(add)
 }
@@ -81,6 +83,8 @@ function back() {
     else {
         document.querySelector("#genrebox").style.display = "none"
         document.querySelector("#form").style.display = "grid"
+        document.querySelector("#addex").style.display = "none"
+        document.querySelector("#plux").style.display = "none"
     }
 }
 function sage(e) {
@@ -216,6 +220,8 @@ async function plu() {
 }
 function genrepag() {
     document.querySelector("#form").style.display = "none"
+    document.querySelector("#addex").style.display = "block"
+    document.querySelector("#plux").style.display = "block"
     document.querySelector("#genrebox").style.display = "block"
 }
 function genupt() {
@@ -231,7 +237,6 @@ function genupt() {
         if (doc.exists) {
             var genks = doc.data().genre
             var opple = document.querySelectorAll(".opsos")
-            console.log(opple)
             for (var w = 0; w < opple.length; w++) {
                 opple[w].remove()
             }

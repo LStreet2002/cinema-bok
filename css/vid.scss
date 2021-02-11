@@ -201,14 +201,54 @@ textarea:focus, input:focus,button:focus,select:focus {
     padding-top:1vw;
     padding-bottom:1vw;
     text-align:center;
-    margin:auto;
+    left:45vw;
+    display:none;
+    position: absolute;
+    top:85vh
 }
 .divop {
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    width:60vw;
+    grid-template-columns: 5fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "inpew removet";
+    margin:auto;
 }
 .minus {
     grid-area:removet;
+    background-color: #F18282;
+    color:white;
+    text-align:center;
 }
+#plux {
+    width:5vw;
+    display:none;
+    position:absolute;
+    top:75vh;
+    left:47.5vw;
+}
+#genapp {
+    height: 75vh;
+    width: 61.7vw;
+    margin: auto;
+    overflow-y: scroll;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(51, 51, 51,0.5);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(51,51,51);
+  }
