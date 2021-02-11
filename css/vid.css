@@ -19,7 +19,7 @@ body {
       grid-template-columns: 3fr 7fr 3fr;
   -ms-grid-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
       grid-template-rows: 5fr 0.5fr 1fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 0.2fr 2fr;
-      grid-template-areas: "vid . vidpo" ". . ." "sele . selepo" ". . ." "tbox tbox tbox" ". . ." "lbox lbox genre" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "add add add";
+      grid-template-areas: "vid . vidpo" ". . ." "sele . selepo" ". . ." "tbox tbox tbox" ". . ." "lbox lbox genre" ". . ." "dbox dbox dbox" ". . ." "abox abox abox" ". . ." "age age age" ". . ." "genx . add";
 }
 
 .lbaw {
@@ -119,19 +119,31 @@ body {
   grid-area: age;
 }
 
-#add {
+#chng {
   -ms-grid-row: 15;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
+  grid-area: genx;
+  text-align: center;
+  background-color: #F18282;
+  color: white;
+  font-size: 1.9vw;
+  width: 19vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#add {
+  -ms-grid-row: 15;
+  -ms-grid-column: 3;
   grid-area: add;
   text-align: center;
   background-color: #0A0903;
   color: white;
   font-size: 1.9vw;
-  margin-left: 31vw;
-  width: 18vw;
+  width: 19vw;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  margin-left: 6vw;
 }
 
 .serie {
@@ -256,5 +268,38 @@ body {
 
 textarea:focus, input:focus, button:focus, select:focus {
   outline: none;
+}
+
+.inpew {
+  display: block;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: inpew;
+}
+
+#addex {
+  background-color: #F18282;
+  color: white;
+  width: 10vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  text-align: center;
+  margin: auto;
+}
+
+.divop {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "inpew removet";
+}
+
+.minus {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: removet;
 }
 /*# sourceMappingURL=vid.css.map */

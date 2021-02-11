@@ -29,8 +29,9 @@ body {
     ". . ."
     "age age age"
     ". . ."
-    "add add add";
+    "genx . add";
 }
+
 .lbaw {
     width:30vw;
 }
@@ -89,17 +90,26 @@ body {
 #ages {
     grid-area:age;
 }
+#chng {
+    grid-area: genx;
+    text-align:center;
+    background-color: #F18282;
+    color:white;
+font-size:1.9vw;
+width:19vw;
+padding-top:1vh;
+padding-bottom:1vh;
+}
 #add {
     grid-area: add;
     text-align:center;
     background-color: #0A0903;
     color:white;
 font-size:1.9vw;
-margin-left:31vw;
-width:18vw;
+width:19vw;
 padding-top:1vh;
 padding-bottom:1vh;
-
+margin-left:6vw;
 }
 .serie {
     display:grid;
@@ -179,4 +189,26 @@ font-size:3vh;
 }
 textarea:focus, input:focus,button:focus,select:focus {
     outline: none;
+}
+.inpew {
+    display:block;
+    grid-area:inpew;
+}
+#addex {
+    background-color: #F18282;
+    color:white;
+    width:10vw;
+    padding-top:1vw;
+    padding-bottom:1vw;
+    text-align:center;
+    margin:auto;
+}
+.divop {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "inpew removet";
+}
+.minus {
+    grid-area:removet;
 }

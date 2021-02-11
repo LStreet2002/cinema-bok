@@ -28,15 +28,7 @@
         </div>
         <div id="genre">
             <p class="labe">Genre</p><select id="gen" class="bawx">
-                <option value="Comedy">Comedy</option>
-                <option value="Romance">Romance</option>
-                <option value="Horror">Horror</option>
-                <option value="Mystery">Mystery</option>
-                <option value="Action">Action</option>
-                <option value="Sci-fi">Sci-fi</option>
-                <option value="Musical">Musical</option>
-                <option value="Children's movie">Children's movie</option>
-                <option value="Documentary">Documentary</option>
+
             </select>
         </div>
         <div class="serie" id="descrip">
@@ -52,9 +44,11 @@
             <p id="fifteen" class="hovv agi" onclick=sage(this)>15</p>
             <p id="eighteen" class="hovv agi" onclick=sage(this)>18</p>
         </div>
+        <p class="hovv" id="chng" onclick=genrepag()>ADD GENRES</p>
         <p class="hovv" id="add" onclick=plu()>ADD</p>
     </div>
     <div id="bar" class="hovv" onclick=back()>RETURN</div>
+    <div id="genrebox"></div>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
