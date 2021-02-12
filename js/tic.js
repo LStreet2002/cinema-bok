@@ -371,40 +371,6 @@ async function unirefun(e) {
 }
 
 
-async function resetimer() {
-    setInterval(async function () {
-        var d = new Date();
-        var n = d.getDay();
-        var h = d.getHours();
-        var m = d.getMinutes()
-        if (m === 10) {
-            console.log("reset")
-            for (var i = 0; i < roms.length; i++) {
-                var ides = []
-                await db
-                    .collection(roms[i]).orderBy("number", "asc").get().then(async (querySnapshot) => {
-                        querySnapshot.forEach((doc) => {
-                            ides.push(doc.id)
-                        })
-                        for (var l = 0; l < ides.length; l++) {
-                            await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc(dal[n] + howers[h]).get().then(async function (doc) {
-                                if (doc.exists) {
-                                    await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc(dal[n] + howers[h]).update({
-                                        status: "unbooked"
-                                    })
-                                }
-                            })
-
-                        }
-
-                    })
-            }
-        }
-        else {
-            console.log("no reset")
-        }
-    }, 60 * 1000);
-}
 
 async function plus(e) {
     var pse = e.parentNode

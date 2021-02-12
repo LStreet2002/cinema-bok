@@ -315,7 +315,7 @@ textarea:focus, input:focus, button:focus, select:focus {
   width: 5vw;
   display: none;
   position: absolute;
-  top: 75vh;
+  top: 72vh;
   left: 47.5vw;
 }
 
@@ -344,5 +344,10 @@ textarea:focus, input:focus, button:focus, select:focus {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #333333;
+}
+
+#centerq {
+  height: 5.2vh;
+  padding-top: 1.6vh;
 }
 /*# sourceMappingURL=vid.css.map */
