@@ -460,6 +460,8 @@ async function resetimer() {
         var p = d.getDate()
         var h = d.getHours();
         var m = d.getMinutes()
+        var y = d.getFullYear()
+        var er = (d.getMonth() + 1)
         if (m === 10) {
             console.log("reset")
             for (var i = 0; i < roms.length; i++) {
@@ -475,6 +477,27 @@ async function resetimer() {
                                     await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc(dal[n] + howers[h]).update({
                                         status: "unbooked"
                                     })
+                                    if ((p + 7) > mons[er]) {
+                                        if (er == 12) {
+                                            await db.collection("dates").doc("dates").update({
+                                                [dal[n] + howers[h]]: ((p + 7) - mons[er]) + "/" + "1" + "/" + (y + 1)
+
+                                            })
+                                        }
+                                        else {
+                                            await db.collection("dates").doc("dates").update({
+                                                [dal[n] + howers[h]]: ((p + 7) - mons[er]) + "/" + (er + 1) + "/" + y
+
+                                            })
+                                        }
+                                    }
+                                    else {
+                                        await db.collection("dates").doc("dates").update({
+                                            [dal[n] + howers[h]]: (p + 7) + "/" + er + "/" + y
+
+                                        })
+                                    }
+
                                 }
                             })
 
@@ -483,10 +506,6 @@ async function resetimer() {
                     })
             }
 
-            await db.collection("dates").doc("dates").get().update({
-                [dal[n] + howers[h]]: (p + 7)
-
-            })
         }
         else {
             console.log("no reset")
