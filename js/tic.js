@@ -453,3 +453,43 @@ async function delaet(e) {
         .catch(error => e.innerText = "Wrong password",
             setTimeout(function () { e.innerText = "DELETE" }, 1500));
 }
+async function resetimer() {
+    setInterval(async function () {
+        var d = new Date();
+        var n = d.getDay();
+        var p = d.getDate()
+        var h = d.getHours();
+        var m = d.getMinutes()
+        if (m === 10) {
+            console.log("reset")
+            for (var i = 0; i < roms.length; i++) {
+                var ides = []
+                await db
+                    .collection(roms[i]).orderBy("number", "asc").get().then(async (querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            ides.push(doc.id)
+                        })
+                        for (var l = 0; l < ides.length; l++) {
+                            await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc(dal[n] + howers[h]).get().then(async function (doc) {
+                                if (doc.exists) {
+                                    await db.collection(roms[i]).doc(ides[l]).collection("txmes").doc(dal[n] + howers[h]).update({
+                                        status: "unbooked"
+                                    })
+                                }
+                            })
+
+                        }
+
+                    })
+            }
+
+            await db.collection("dates").doc("dates").get().update({
+                [dal[n] + howers[h]]: (p + 7)
+
+            })
+        }
+        else {
+            console.log("no reset")
+        }
+    }, 60 * 1000);
+}
