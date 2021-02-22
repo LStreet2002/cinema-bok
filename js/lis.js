@@ -49,6 +49,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
                                 var age = document.createElement("img");
                                 age.classList.add("agg");
                                 age.setAttribute("name", doc.data().age)
+                                age.setAttribute("alt", doc.data().title + " poster")
                                 age.src = "pic/" + doc.data().age + ".png";
 
                                 var litle = document.createElement("p")

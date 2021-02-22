@@ -37,6 +37,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         var plu = document.createElement("img")
         plu.id = "plux"
         plu.src = "pic/plus.png"
+        plu.alt = "add"
         plu.classList.add("hovv")
         plu.setAttribute("onclick", "plus(this)")
         document.querySelector("#genrebox").appendChild(plu)
@@ -54,6 +55,7 @@ function plus(e) {
     document.querySelector("#addex").remove()
     var plu = document.createElement("img")
     plu.id = "plux"
+    plu.alt = "add"
     plu.src = "pic/plus.png"
     plu.classList.add("hovv")
     plu.style.display = "block"
@@ -315,16 +317,4 @@ async function resetimer() {
             console.log("no reset")
         }
     }, 60 * 1000);
-}
-async function gorsep() {
-    var d = new Date();
-    var n = d.getDay();
-    var p = d.getDate()
-    var h = d.getHours();
-    var m = d.getMinutes()
-    var y = d.getFullYear()
-    var er = (d.getMonth() + 1)
-    var mons = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    console.log(mons[er])
-
 }
