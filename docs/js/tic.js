@@ -233,6 +233,7 @@ async function settimes() {
                         timtx = sss[i].parentNode.parentNode.id + sss[i].options[sss[i].selectedIndex].parentNode.parentNode.querySelector(".daytime").getAttribute("name")
                         tempa.push(timt)
                         tempax.push(timtx)
+                        var dazz = sss[i].parentNode.parentNode.id
                     }
                 }
                 db.collection("movies").doc(doc.id).collection("Rooms").doc(document.querySelector("#ident").innerText).set({
