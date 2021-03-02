@@ -21,11 +21,11 @@ firebase.auth().onAuthStateChanged(async function (user) {
                                 conta.classList.add("conta", "hovv")
                                 conta.setAttribute("onclick", "seatinfo(this)")
                                 if (doc.data().status === "booked") {
-                                    conta.src = "/pic/book.png"
+                                    conta.src = "pic/book.png"
                                     conta.setAttribute("name", "booked")
                                 }
                                 else {
-                                    conta.src = "/pic/unbook.png"
+                                    conta.src = "pic/unbook.png"
                                     conta.setAttribute("name", "unbooked")
                                 }
 
@@ -140,11 +140,11 @@ function movvie(e) {
                             .collection(e.parentNode.id).doc(doc.id).collection("txmes").doc(tillee).get().then((doc) => {
                                 if (doc.exists) {
                                     if (doc.data().status === "booked") {
-                                        reconta.src = "/pic/book.png"
+                                        reconta.src = "pic/book.png"
                                         reconta.setAttribute("name", "booked")
                                     }
                                     else {
-                                        reconta.src = "/pic/unbook.png"
+                                        reconta.src = "pic/unbook.png"
                                         reconta.setAttribute("name", "unbooked")
                                     }
                                     e.parentNode.querySelector(".megaseat").appendChild(reconta)
