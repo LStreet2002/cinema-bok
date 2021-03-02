@@ -6,12 +6,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         resetimer()
     }
     else {
-        window.location.replace("login.html")
+        window.location.replace("index.html")
     }
 })
 // User is signed in.
 function back() {
-    window.location.replace("login.html")
+    window.location.replace("index.html")
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
     }).catch((error) => {

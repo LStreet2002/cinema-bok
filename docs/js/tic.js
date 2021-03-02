@@ -63,7 +63,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
         resetimer()
     }
     else {
-        window.location.replace("login.html")
+        window.location.replace("index.html")
     }
 })
 var first = document.querySelectorAll(".roomb")
